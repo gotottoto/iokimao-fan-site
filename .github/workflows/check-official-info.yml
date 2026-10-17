@@ -25,6 +25,8 @@ jobs:
           python-version: '3.12'
       - name: Check official sources
         run: python scripts/monitor_sources.py
+      - name: Collect blog review candidates
+        run: python scripts/update_blog.py
       - name: Commit source hashes and report
         run: |
           git config user.name 'github-actions[bot]'
