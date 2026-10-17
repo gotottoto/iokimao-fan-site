@@ -8,8 +8,8 @@ from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.error import URLError
+from urllib.parse import urljoin, urlsplit, urlunsplit
 from urllib.request import Request, urlopen
-from urllib.parse import urljoin
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "blog_pending.json"
@@ -18,6 +18,18 @@ SOURCE = (
     "?cd=MEMBER&ct=55396"
 )
 BASE = "https://www.nogizaka46.com"
+
+
+def clean_url(url):
+    """Remove tracking parameters so the same post has one stable URL."""
+    parts = urlsplit(url)
+    return urlunsplit((
+        parts.scheme,
+        parts.netloc,
+        parts.path,
+        "",
+        "",
+    ))
 
 
 class BlogParser(HTMLParser):
@@ -30,12 +42,16 @@ class BlogParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
-        if tag == "a" and attrs.get("href"):
-            href = urljoin(BASE, attrs["href"])
-            if "/s/n46/diary/detail/" in href:
-                self.current_link = href
-                self.current_text = []
-                self.in_link = True
+        if tag != "a" or not attrs.get("href"):
+            return
+
+        href = urljoin(BASE, attrs["href"])
+        if "/s/n46/diary/detail/" not in href:
+            return
+
+        self.current_link = clean_url(href)
+        self.current_text = []
+        self.in_link = True
 
     def handle_data(self, data):
         if self.in_link:
@@ -44,19 +60,42 @@ class BlogParser(HTMLParser):
                 self.current_text.append(text)
 
     def handle_endtag(self, tag):
-        if tag == "a" and self.in_link:
-            title = " ".join(self.current_text).strip()
-            if title and self.current_link:
-                self.entries.append({
-                    "title": title,
-                    "url": self.current_link,
-                    "category": "blog",
-                    "source": SOURCE,
-                    "status": "needs_review",
-                })
-            self.current_link = None
-            self.current_text = []
-            self.in_link = False
+        if tag != "a" or not self.in_link:
+            return
+
+        raw_title = " ".join(self.current_text).strip()
+        match = re.match(
+            r"^(.*?)\s+(\d{4})\.(\d{2})\.(\d{2})"
+            r"(?:\s+(\d{2}):(\d{2}))?$",
+            raw_title,
+        )
+
+        if match and match.group(1).strip():
+            title = match.group(1).strip()
+            year, month, day = map(int, match.group(2, 3, 4))
+            date_text = f"{year:04d}-{month:02d}-{day:02d}"
+
+            try:
+                datetime(year, month, day)
+            except ValueError:
+                date_text = None
+        else:
+            title = raw_title
+            date_text = None
+
+        if title and self.current_link:
+            self.entries.append({
+                "title": title,
+                "date": date_text,
+                "url": self.current_link,
+                "category": "blog",
+                "source": SOURCE,
+                "status": "needs_review",
+            })
+
+        self.current_link = None
+        self.current_text = []
+        self.in_link = False
 
 
 def main():
@@ -79,48 +118,49 @@ def main():
 
     unique = {}
     for entry in parser.entries:
-        unique[entry["url"]] = entry
+        if entry["url"] not in unique:
+            unique[entry["url"]] = entry
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
 
     if OUTPUT.exists():
         try:
-            existing = json.loads(
-                OUTPUT.read_text(encoding="utf-8")
-            )
-        except (json.JSONDecodeError, OSError):
-            raise SystemExit(
-                "Existing review file is unreadable; refusing to overwrite it."
-            )
+            existing = json.loads(OUTPUT.read_text(encoding="utf-8"))
+        except (json.JSONDecodeError, OSError) as exc:
+            raise SystemExit(f"Cannot read existing review data: {exc}")
     else:
         existing = []
 
     if not isinstance(existing, list):
         raise SystemExit("Review file must contain a JSON list.")
 
-    known_urls = {
-        item.get("url")
+    known = {
+        clean_url(item["url"])
         for item in existing
-        if isinstance(item, dict)
+        if isinstance(item, dict) and isinstance(item.get("url"), str)
     }
 
     added = []
+    now = datetime.now(timezone.utc).isoformat()
+
     for url, entry in unique.items():
-        if url not in known_urls:
-            entry["detected_at"] = datetime.now(
-                timezone.utc
-            ).isoformat()
-            added.append(entry)
+        if url in known:
+            continue
+        entry["detected_at"] = now
+        added.append(entry)
 
     OUTPUT.write_text(
         json.dumps(existing + added, ensure_ascii=False, indent=2) + "\n",
         encoding="utf-8",
     )
 
+    missing_dates = sum(1 for item in unique.values() if not item["date"])
+
     print(f"Official blog links found: {len(unique)}")
     print(f"New review candidates added: {len(added)}")
+    print(f"Entries needing date review: {missing_dates}")
     print(f"Review file: {OUTPUT.relative_to(ROOT)}")
-    print("No HTML pages were modified or published.")
+    print("Existing HTML was not changed; nothing was published.")
 
 
 if __name__ == "__main__":
