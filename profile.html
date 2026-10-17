@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PROFILE | Mao Ioki Fan Site</title>
+<style>
+:root{--ink:#173e60;--blue:#188fce;--cyan:#08b6cd;--line:#d8eaf4;--muted:#6c879c;--pale:#eefaff;--soft:#f8fcff}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font-family:"M PLUS Rounded 1c","Hiragino Maru Gothic ProN","Yu Gothic UI","Meiryo",sans-serif;letter-spacing:.025em;background:#fff}a{color:inherit;text-decoration:none;transition:.18s}a:hover{color:var(--blue)}a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}
+.wrap{max-width:1420px;margin:auto;padding:0 28px}header{min-height:84px;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}.logo b{font-size:27px;font-weight:500;letter-spacing:.06em;color:#1b719f}.logo small{display:block;font-size:9px;letter-spacing:.2em;margin-top:3px}nav{display:flex;gap:22px;flex-wrap:wrap}nav a{font-size:11px;padding:12px 0;border-bottom:2px solid transparent}nav a:hover,nav a.active{border-color:var(--cyan)}
+main{padding:26px 0 55px}.profile{display:grid;grid-template-columns:minmax(280px,.82fr) minmax(400px,1.18fr);gap:0;border:1px solid var(--line);border-radius:22px;overflow:hidden;background:#fff;box-shadow:0 10px 35px #168fd00b}.portrait{min-height:580px;background:#d8f0e8;display:flex;align-items:stretch;justify-content:center;padding:0;position:relative;overflow:hidden}.portrait img{width:100%;height:100%;min-height:580px;object-fit:cover;object-position:center top;display:block}.portrait .initials{font-size:clamp(58px,8vw,110px);font-weight:700;color:#fff;text-shadow:0 4px 20px #188fce25;letter-spacing:.08em}.portrait .portrait-note{position:absolute;bottom:22px;left:22px;right:22px;text-align:center;font-size:11px;color:#397895;background:#ffffffc9;border-radius:14px;padding:10px}.profile-info{padding:34px 36px}.eyebrow{font-size:11px;letter-spacing:.18em;color:var(--blue);font-weight:700}.profile-info h1{font-size:clamp(32px,4vw,50px);line-height:1.25;margin:12px 0 4px;letter-spacing:.08em}.roman{font-size:14px;letter-spacing:.15em;color:var(--muted)}.member-label{display:inline-block;margin:14px 0 25px;background:#e9faff;color:#087fa7;border-radius:999px;padding:7px 13px;font-size:11px}
+.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.fact{min-height:86px;border:1px solid #d9edf5;border-radius:17px;background:#fbfeff;padding:15px;display:flex;align-items:center;gap:13px}.fact-icon{width:42px;height:42px;flex:0 0 42px;border-radius:50%;background:#eaf9fd;color:var(--blue);display:grid;place-items:center;font-size:19px}.fact small{display:block;font-size:9px;letter-spacing:.12em;color:#8aa1b2;font-weight:700;margin-bottom:5px}.fact strong{font-size:14px;line-height:1.5;font-weight:600}.colors{display:flex;align-items:center;gap:8px}.dot{width:17px;height:17px;border-radius:50%;display:inline-block;border:1px solid #0001}.links{margin-top:25px;padding-top:20px;border-top:2px dashed #d9edf5}.links h2{font-size:12px;letter-spacing:.2em;color:#8aa1b2;margin:0 0 12px}.linkrow{display:flex;gap:10px;flex-wrap:wrap}.pill{display:inline-block;border:1px solid var(--line);border-radius:999px;padding:10px 14px;font-size:11px;background:white}.pill:hover{background:var(--pale);border-color:var(--cyan);transform:translateY(-1px)}
+.shortcuts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:22px}.shortcut{padding:18px;border:1px solid var(--line);border-radius:15px;background:linear-gradient(140deg,#fff,#f2fbff)}.shortcut:hover{border-color:var(--cyan);transform:translateY(-2px);box-shadow:0 7px 20px #168fd012}.shortcut small{font-size:10px;color:var(--blue);letter-spacing:.15em}.shortcut strong{display:block;font-size:15px;margin:7px 0}.shortcut span{font-size:11px;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:22px 0;color:var(--muted);font-size:10px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+@media(max-width:850px){.profile{grid-template-columns:1fr}.portrait{min-height:300px}.profile-info{padding:26px 22px}.shortcuts{grid-template-columns:repeat(2,1fr)}}@media(max-width:500px){.wrap{padding:0 14px}header{padding:14px 0}nav{gap:12px}.facts{grid-template-columns:1fr}.shortcuts{grid-template-columns:1fr}.profile-info h1{font-size:34px}}
+.fact-icon svg{width:24px;height:24px;display:block}.penlight-pair{width:54px;height:34px;flex:0 0 54px;display:block;overflow:visible}.colors{gap:7px}.colors span{white-space:nowrap}.penlight-badge{width:25px;height:25px;display:block}
+/* Shared navigation alignment across all pages */
+nav{align-items:center}nav a{box-sizing:border-box;display:inline-flex;align-items:center;line-height:1.5;border-bottom:2px solid transparent;padding-top:8px;padding-bottom:8px}nav a.active{border-bottom-color:var(--cyan, #7dd3e8)}
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style id="site-global-style">
+html{scroll-behavior:smooth}
+body,body *:not(svg):not(path){font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif!important}
+#back-to-top{position:fixed;right:22px;bottom:22px;z-index:9999;width:48px;height:48px;border:1px solid #c8eaf3;border-radius:50%;background:rgba(255,255,255,.94);color:#159fc1;box-shadow:0 4px 16px rgba(25,115,145,.16);display:flex;align-items:center;justify-content:center;font-size:24px;line-height:1;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s}
+#back-to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0)}
+#back-to-top:hover{background:#eaf9fd;transform:translateY(-2px)}
+#back-to-top:focus-visible{outline:3px solid #159fc1;outline-offset:3px}
+@media(max-width:600px){#back-to-top{right:14px;bottom:14px;width:44px;height:44px}}
+</style>
+</head><body><div class="wrap">
+<header><a class="logo" href="index.html"><b>Mao Ioki</b><small>UNOFFICIAL FAN SITE</small></a><nav><a class="" href="index.html">HOME</a><a class="active" href="profile.html">PROFILE</a><a class="" href="schedule.html">SCHEDULE</a><a class="" href="tv.html">TV</a><a class="" href="magazine.html">MAGAZINE</a><a class="" href="radio.html">RADIO</a><a class="" href="web.html">WEB / DRAMA</a><a class="" href="videos.html">VIDEOS</a><a class="" href="blog.html">BLOG</a></nav></header>
+<main>
+<section class="profile">
+<div class="portrait"><img src="mao_profile.jpg" alt="五百城茉央 公式プロフィール写真"></div>
+<div class="profile-info"><div class="eyebrow">NOGIZAKA46 · 5TH GENERATION</div><h1>五百城 茉央</h1><div class="roman">Mao Ioki</div><div class="member-label">乃木坂46 5期生 · 2022年加入</div>
+<div class="facts">
+<div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 10c0 5-8 12-8 12S4 15 4 10a8 8 0 1 1 16 0Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="12" cy="10" r="2.7" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></div><div><small>BIRTHPLACE</small><strong>兵庫県</strong></div></div>
+
+<div class="fact"><div class="fact-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M10.5 3.5c-.8-.8.6-1.5 1.5-1.5s1.4.7.5 1.5"/><path d="M5 11h14v9H5z"/><path d="M3.5 20h17"/><path d="M5 14c1.2 0 1.2 1 2.4 1s1.2-1 2.4-1 1.2 1 2.4 1 1.2-1 2.4-1 1.2 1 2.4 1 1.2-1 2.4-1"/></g></svg></div><div><small>BIRTHDAY</small><strong>2005年7月29日</strong></div></div>
+<div class="fact"><div class="fact-icon">＋</div><div><small>HEIGHT</small><strong>166cm</strong></div></div>
+<div class="fact"><div class="fact-icon">♡</div><div><small>BLOOD TYPE</small><strong>O型</strong></div></div>
+<div class="fact"><div class="fact-icon">☼</div><div><small>ZODIAC</small><strong>しし座</strong></div></div>
+<div class="fact"><div class="fact-icon">☺</div><div><small>HOBBIES</small><strong>ギター・写真・銭湯めぐり</strong></div></div>
+<div class="fact"><div class="fact-icon">♡</div><div><small>FAVORITE</small><strong>マグロ・紅茶・えんがわ</strong></div></div>
+<div class="fact"><div class="fact-icon"><svg class="single-penlight-icon" viewBox="0 0 24 24" aria-hidden="true">
+<g transform="rotate(-18 12 12)" fill="none" stroke="currentColor" stroke-linejoin="round">
+<rect x="9" y="2" width="6" height="15" rx="2.8" stroke-width="1.5"/>
+<path d="M9.5 4.5h5M10.5 6v8" stroke-width="1" stroke-linecap="round"/>
+<rect x="8.5" y="16" width="7" height="5" rx="1.4" stroke-width="1.5"/>
+<path d="M10 18h4" stroke-width="1" stroke-linecap="round"/>
+</g></svg></div><div><small>PENLIGHT COLOR</small><strong class="colors"><span>ターコイズ × 青</span></strong></div></div>
+</div>
+<div class="links"><h2>OFFICIAL LINKS</h2><div class="linkrow"><a class="pill" href="https://www.nogizaka46.com/s/n46/artist/55396" target="_blank" rel="noopener">公式プロフィール ↗</a><a class="pill" href="https://www.nogizaka46.com/s/n46/diary/MEMBER/list?ct=55396" target="_blank" rel="noopener">公式ブログ ↗</a><a class="pill" href="https://www.instagram.com/mao.ioki.official/" target="_blank" rel="noopener">Instagram ↗</a></div></div>
+</div></section>
+<section class="shortcuts"><a class="shortcut" href="blog.html"><small>BLOG ARCHIVE</small><strong>公式ブログ</strong><span>投稿日・年ごとに読む →</span></a><a class="shortcut" href="schedule.html"><small>ACTIVITY</small><strong>活動記録</strong><span>出演・掲載を探す →</span></a><a class="shortcut" href="magazine.html"><small>PUBLICATIONS</small><strong>雑誌・写真集</strong><span>媒体ごとに探す →</span></a><a class="shortcut" href="videos.html"><small>VIDEOS</small><strong>動画・MV</strong><span>公式動画を見る →</span></a></section>
+</main><footer><div>MAO IOKI · UNOFFICIAL FAN SITE<br>Turquoise × Blue</div><div>非公式ファンサイトです。公式情報へのリンクを掲載しています。</div></footer></div><button id="back-to-top" type="button" aria-label="ページの一番上に戻る" title="一番上に戻る">↑</button>
+<script>
+(function(){
+ const btn=document.getElementById('back-to-top');
+ if(!btn)return;
+ const update=function(){btn.classList.toggle('is-visible',window.scrollY>260)};
+ window.addEventListener('scroll',update,{passive:true});
+ btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+ update();
+})();
+</script>
+</body></html>

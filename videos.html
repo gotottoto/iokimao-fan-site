@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VIDEOS | 五百城茉央ファンサイト</title>
+<style>
+:root{--ink:#18334b;--blue:#168fca;--cyan:#27b8c7;--line:#d7eaf2;--muted:#688092;--paper:#f7fcfe}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:"Noto Sans JP",sans-serif}
+a{color:inherit;text-decoration:none}a:hover{color:var(--blue)}
+.wrap{max-width:1120px;margin:auto;padding:0 22px}
+header{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;border-bottom:1px solid var(--line);flex-wrap:wrap}
+.logo{display:flex;flex-direction:column}.logo b{font-family:Georgia,serif;font-size:25px;font-weight:500}.logo small{font-size:9px;letter-spacing:.2em;color:var(--muted)}
+nav{display:flex;gap:16px;flex-wrap:wrap}nav a{font-size:11px;letter-spacing:.1em}nav a.active{color:var(--blue);font-weight:700}
+.hero{padding:38px 0 24px}.eyebrow{font-size:10px;letter-spacing:.24em;color:var(--cyan)}h1{font-size:clamp(30px,5vw,46px);font-weight:500;margin:8px 0}.hero p{font-size:13px;color:var(--muted);line-height:1.9;max-width:720px}
+.notice{padding:14px 16px;border:1px solid var(--line);background:white;border-radius:12px;font-size:12px;line-height:1.8;margin:18px 0 28px}
+.video-section{margin:34px 0 42px}.video-section h2{font-size:20px;font-weight:500;border-left:4px solid var(--cyan);padding-left:12px;margin-bottom:18px}
+.video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.video-card{background:white;border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:transform .2s,box-shadow .2s}
+.video-card:hover{transform:translateY(-3px);box-shadow:0 10px 24px #12354a12}
+.thumb{position:relative;aspect-ratio:16/9;background:#e8f6fa;overflow:hidden}.thumb img{width:100%;height:100%;object-fit:cover;display:block}.play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:#092c49d9;color:white;border-radius:999px;width:44px;height:44px;display:grid;place-items:center;padding-left:3px}.tag{position:absolute;left:10px;top:10px;border-radius:99px;background:linear-gradient(100deg,var(--blue),var(--cyan));color:white;padding:5px 9px;font-size:10px}
+.video-info{padding:15px;display:flex;flex-direction:column;flex:1}.video-info small{color:var(--muted);font-size:10px}.video-info h3{font-size:15px;line-height:1.6;margin:8px 0;font-weight:600}.video-info p{font-size:11px;line-height:1.8;color:var(--muted);margin:0 0 14px}.watch{font-size:11px;color:var(--blue);margin-top:auto}.no-thumb{height:100%;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;color:var(--blue);letter-spacing:.2em}.no-thumb small{font-size:10px;letter-spacing:0}
+footer{border-top:1px solid var(--line);padding:24px 0;margin-top:48px;color:var(--muted);font-size:10px;display:flex;justify-content:space-between}
+@media(max-width:780px){.video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.wrap{padding:0 14px}.video-grid{grid-template-columns:1fr}header{align-items:flex-start}nav{gap:12px}footer{gap:15px;flex-direction:column}}
+
+/* Clear pointer and hover feedback for interactive elements */
+a, button, select, input[type="button"], input[type="submit"], .tile, .video-card, .entry, .fact-link { cursor: pointer; }
+a, button, .tile, .video-card, .entry { transition: color .18s ease, background-color .18s ease, border-color .18s ease, box-shadow .18s ease, transform .18s ease; }
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; }
+.tile:hover, .video-card:hover, .entry:hover { transform: translateY(-2px); border-color: var(--cyan); box-shadow: 0 7px 20px #168fd01a; }
+
+/* Shared navigation alignment across all pages */
+nav{align-items:center}nav a{box-sizing:border-box;display:inline-flex;align-items:center;line-height:1.5;border-bottom:2px solid transparent;padding-top:8px;padding-bottom:8px}nav a.active{border-bottom-color:var(--cyan, #7dd3e8)}
+</style><link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+<style id="site-global-style">
+html{scroll-behavior:smooth}
+body,body *:not(svg):not(path){font-family:"Zen Maru Gothic","Hiragino Maru Gothic ProN","Yu Gothic",sans-serif!important}
+#back-to-top{position:fixed;right:22px;bottom:22px;z-index:9999;width:48px;height:48px;border:1px solid #c8eaf3;border-radius:50%;background:rgba(255,255,255,.94);color:#159fc1;box-shadow:0 4px 16px rgba(25,115,145,.16);display:flex;align-items:center;justify-content:center;font-size:24px;line-height:1;cursor:pointer;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s}
+#back-to-top.is-visible{opacity:1;visibility:visible;transform:translateY(0)}
+#back-to-top:hover{background:#eaf9fd;transform:translateY(-2px)}
+#back-to-top:focus-visible{outline:3px solid #159fc1;outline-offset:3px}
+@media(max-width:600px){#back-to-top{right:14px;bottom:14px;width:44px;height:44px}}
+</style>
+</head><body><div class="wrap">
+<header><a class="logo" href="index.html"><b>Mao Ioki</b><small>UNOFFICIAL FAN SITE</small></a>
+<nav><a class="" href="index.html">HOME</a><a class="" href="profile.html">PROFILE</a><a class="" href="schedule.html">SCHEDULE</a><a class="" href="tv.html">TV</a><a class="" href="magazine.html">MAGAZINE</a><a class="" href="radio.html">RADIO</a><a class="" href="web.html">WEB / DRAMA</a><a class="active" href="videos.html">VIDEOS</a><a class="" href="blog.html">BLOG</a></nav></header>
+<main><section class="hero"><div class="eyebrow">YOUTUBE / MUSIC VIDEO / STREAMING</div><h1>VIDEOS</h1><p>乃木坂工事中の最新公開回、五百城茉央がセンターを務めた楽曲のMV、個人出演動画、乃木坂逃避行をまとめたページ。</p></section>
+<section class="video-section"><h2>乃木坂工事中</h2><div class="video-grid">
+<a class="video-card" href="https://youtu.be/w36qOcRwauA" target="_blank" rel="noopener noreferrer">
+  <div class="thumb"><img src="https://i.ytimg.com/vi/w36qOcRwauA/hqdefault.jpg" alt="乃木坂工事中 最新公開回「さくちゃん捜査会議【おまけ付き】」のサムネイル" loading="lazy"><span class="play">▶</span><span class="tag">最新回</span></div>
+  <div class="video-info"><small>2026-10-11放送 / 2026-10-12公開</small><h3>乃木坂工事中 最新公開回「さくちゃん捜査会議【おまけ付き】」</h3><span class="watch">視聴ページへ ↗</span></div>
+</a></div></section><section class="video-section"><h2>センター曲 MV</h2><div class="video-grid">
+<a class="video-card" href="https://youtu.be/zIZ3myCmRFQ" target="_blank" rel="noopener noreferrer">
+  <div class="thumb"><img src="https://i.ytimg.com/vi/zIZ3myCmRFQ/hqdefault.jpg" alt="「じゃあね」が切ないのサムネイル" loading="lazy"><span class="play">▶</span><span class="tag">センター</span></div>
+  <div class="video-info"><small>2024-06-20公開</small><h3>「じゃあね」が切ない</h3><p>五百城茉央が初めてセンターを務めた5期生曲。</p><span class="watch">視聴ページへ ↗</span></div>
+</a>
+<a class="video-card" href="https://www.youtube.com/watch?v=m2ANkjMRuXc" target="_blank" rel="noopener noreferrer">
+  <div class="thumb"><img src="https://i.ytimg.com/vi/m2ANkjMRuXc/hqdefault.jpg" alt="純粋とは何か？のサムネイル" loading="lazy"><span class="play">▶</span><span class="tag">センター</span></div>
+  <div class="video-info"><small>2025-11-17公開</small><h3>純粋とは何か？</h3><p>40thシングル収録曲。五百城茉央がセンターを務める楽曲。</p><span class="watch">視聴ページへ ↗</span></div>
+</a></div></section><section class="video-section"><h2>個人・メンバー出演 YouTube</h2><div class="video-grid">
+<a class="video-card" href="https://youtu.be/nhHCZMY2Wrg" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/nhHCZMY2Wrg/hqdefault.jpg" alt="五百城がマグロ食べに築地行ってきた サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">個人回</span></div><div class="video-info"><small>2023年5月19日公開</small><h3>【マイ醤油】五百城がマグロ食べに築地行ってきた！【持参】</h3><p>五百城茉央の築地グルメ・トーク動画。</p><span class="watch">乃木坂配信中で見る ↗</span></div></a>
+<a class="video-card" href="https://youtu.be/N73eAzUet7c" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/N73eAzUet7c/hqdefault.jpg" alt="五百城茉央と正源司陽子 古民家の釜戸でごはん作り 前編 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">正源司陽子コラボ</span></div><div class="video-info"><small>2024年5月3日公開</small><h3>【乃木坂と日向坂のガチ従姉妹】五百城と正源司が古民家の釜戸でごはん作ってみた！</h3><p>乃木坂配信中で公開された前編。正源司陽子さんとの従姉妹コラボ。</p><span class="watch">乃木坂配信中で見る ↗</span></div></a>
+<a class="video-card" href="https://youtu.be/0bpp7wKq23k" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/0bpp7wKq23k/hqdefault.jpg" alt="ヴィッセル神戸のキックインセレモニーに密着した五百城茉央の動画サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">乃木坂配信中</span></div><div class="video-info"><small>2023年9月29日公開</small><h3>【まさかのレフティ】ヴィッセル神戸のキックインセレモニーを務めさせていただいた五百城に密着！</h3><p>乃木坂配信中が公開したヴィッセル神戸のホームゲーム密着動画。</p><span class="watch">乃木坂配信中で見る ↗</span></div></a>
+<a class="video-card" href="https://www.youtube.com/@nogizakahaishinchu/search?query=%E4%BA%94%E7%99%BE%E5%9F%8E" target="_blank" rel="noopener noreferrer"><div class="thumb"><div class="no-thumb"><span>NOGIZAKA</span><small>公式チャンネル検索</small></div><span class="play">▶</span><span class="tag">動画まとめ</span></div><div class="video-info"><small>随時更新</small><h3>乃木坂配信中｜五百城茉央の出演動画まとめ</h3><p>乃木坂配信中の五百城茉央関連動画をまとめて検索。</p><span class="watch">動画一覧へ ↗</span></div></a>
+</div></section><section class="video-section"><h2>乃木坂、逃避行。</h2><p>沖縄編・愛媛編・石垣島編など、五百城茉央ちゃんが出演した旅をシーズン別ページに分けず、この一覧にまとめています。各カードから該当する公式Lemino配信ページへ移動できます。</p><div class="video-grid">
+<a class="video-card" href="https://lemino.docomo.ne.jp/ft/0000062/season1.html" target="_blank" rel="noopener noreferrer"><div class="thumb"><div class="no-thumb"><span>LEMINO</span><small>沖縄編</small></div><span class="play">▶</span><span class="tag">五百城茉央×井上和</span></div><div class="video-info"><small>2024年8月配信</small><h3>沖縄編｜五百城茉央×井上和</h3><p>前編・後編を含む公式シリーズページ。</p><span class="watch">Leminoで見る ↗</span></div></a>
+<a class="video-card" href="https://lemino.docomo.ne.jp/ft/0000062/season3.html" target="_blank" rel="noopener noreferrer"><div class="thumb"><div class="no-thumb"><span>LEMINO</span><small>愛媛編</small></div><span class="play">▶</span><span class="tag">遠藤さくら×五百城茉央</span></div><div class="video-info"><small>2025年7月配信</small><h3>愛媛編｜遠藤さくら×五百城茉央</h3><p>前編・後編を含む公式シリーズページ。</p><span class="watch">Leminoで見る ↗</span></div></a>
+<a class="video-card" href="https://lemino.docomo.ne.jp/ft/0000062/" target="_blank" rel="noopener noreferrer"><div class="thumb"><div class="no-thumb"><span>LEMINO</span><small>石垣島編</small></div><span class="play">▶</span><span class="tag">五百城茉央×愛宕心響</span></div><div class="video-info"><small>2026年2月配信</small><h3>石垣島編｜五百城茉央×愛宕心響</h3><p>小・中学校の同級生でもある2人の旅。前編・完結編を含む公式シリーズページ。</p><span class="watch">Leminoで見る ↗</span></div></a>
+</div></section>
+<section class="video-section"><h2>CM・広告動画</h2><div class="video-grid"><a class="video-card" href="https://www.youtube.com/watch?v=UJMNpYPoWgA" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/UJMNpYPoWgA/hqdefault.jpg" alt="七十七銀行「知ってた？シマウマ篇」15秒 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">七十七銀行公式</span></div><div class="video-info"><h3>七十七銀行「知ってた？シマウマ篇」15秒</h3><p>2026年7月公開・五百城茉央出演</p><span class="watch">七十七銀行公式を見る ↗</span></div></a><a class="video-card" href="https://www.youtube.com/watch?v=HqypwXZL1qs" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/HqypwXZL1qs/hqdefault.jpg" alt="百五銀行カードローン「知ってた？シマウマ篇」15秒 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">百五銀行公式</span></div><div class="video-info"><h3>百五銀行カードローン「知ってた？シマウマ篇」15秒</h3><p>2026年8月公開・五百城茉央出演</p><span class="watch">百五銀行公式を見る ↗</span></div></a><a class="video-card" href="https://www.youtube.com/watch?v=SzGVv5Nk1v8" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/SzGVv5Nk1v8/hqdefault.jpg" alt="百五銀行カードローン「お借り換えもできる」 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">百五銀行公式</span></div><div class="video-info"><h3>百五銀行カードローン「お借り換えもできる」</h3><p>五百城茉央出演</p><span class="watch">百五銀行公式を見る ↗</span></div></a><a class="video-card" href="https://www.youtube.com/watch?v=trd2LI6_f8c" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/trd2LI6_f8c/hqdefault.jpg" alt="七十七銀行「スマホでお借入れご返済可能篇」 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">七十七銀行公式</span></div><div class="video-info"><h3>七十七銀行「スマホでお借入れご返済可能篇」</h3><p>五百城茉央出演</p><span class="watch">七十七銀行公式を見る ↗</span></div></a></div></section><section class="video-section"><h2>外部アーティストMV</h2><div class="video-grid"><a class="video-card" href="https://youtu.be/bobUT-j6PeQ" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/bobUT-j6PeQ/hqdefault.jpg" alt="flumpool「スノウゴースト」Music Video サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">flumpool公式</span></div><div class="video-info"><h3>flumpool「スノウゴースト」Music Video</h3><p>五百城茉央出演・2025年12月公開</p><span class="watch">flumpool公式を見る ↗</span></div></a></div></section><section class="video-section"><h2>ショートドラマ</h2><div class="video-grid"><a class="video-card" href="https://www.youtube.com/watch?v=IFyVsfL4KtQ" target="_blank" rel="noopener noreferrer"><div class="thumb"><img src="https://i.ytimg.com/vi/IFyVsfL4KtQ/hqdefault.jpg" alt="indigo la End「最愁回」Episode 1「雨は片想い」 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">indigo la End公式</span></div><div class="video-info"><h3>indigo la End「最愁回」Episode 1「雨は片想い」</h3><p>五百城茉央主演・2025年8月公開</p><span class="watch">indigo la End公式を見る ↗</span></div></a></div></section><section class="video-section"><h2>ヴィッセル神戸公式｜五百城茉央 出演動画</h2>
+<p>ヴィッセル神戸の公式YouTubeチャンネルが公開した動画だけを掲載しています。乃木坂配信中の密着動画は上の「個人・メンバー出演 YouTube」に分けています。</p>
+<div class="video-grid">
+<a class="video-card" href="https://youtu.be/wwhBNc6tbpM" target="_blank" rel="noopener noreferrer">
+<div class="thumb"><img src="https://i.ytimg.com/vi/wwhBNc6tbpM/hqdefault.jpg" alt="五百城茉央 来場の裏側に今年もカメラが密着 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">最新</span></div>
+<div class="video-info"><small>2026年10月8日公開</small><h3>五百城茉央さん｜来場の裏側に今年もカメラが密着！【9/11 vs.鹿島】</h3><p>2026年9月11日の来場時に密着。</p><span class="watch">VISSEL KOBE公式で見る ↗</span></div></a>
+<a class="video-card" href="https://youtu.be/9QFw2yPv648" target="_blank" rel="noopener noreferrer">
+<div class="thumb"><img src="https://i.ytimg.com/vi/9QFw2yPv648/hqdefault.jpg" alt="五百城茉央 再来場の裏側にプチ密着 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">2025</span></div>
+<div class="video-info"><small>2025年1月11日公開</small><h3>五百城茉央さん｜再来場の裏側にプチ密着【12/8 vs.湘南】</h3><p>優勝が決まった試合への来場に密着。</p><span class="watch">VISSEL KOBE公式で見る ↗</span></div></a>
+<a class="video-card" href="https://youtu.be/Wv_-xqqe4fw" target="_blank" rel="noopener noreferrer">
+<div class="thumb"><img src="https://i.ytimg.com/vi/Wv_-xqqe4fw/hqdefault.jpg" alt="五百城茉央 スペシャルゲスト来場の裏側に密着 サムネイル" loading="lazy"><span class="play">▶</span><span class="tag">2023</span></div>
+<div class="video-info"><small>2023年10月9日公開</small><h3>五百城茉央さん｜スペシャルゲスト来場の裏側にカメラが密着【9/23 vs. C大阪】</h3><p>スタジアムグルメ、キックインセレモニー、PK対決前の様子など。</p><span class="watch">VISSEL KOBE公式で見る ↗</span></div></a>
+<a class="video-card" href="https://www.youtube.com/@visselkobe/search?query=%E4%BA%94%E7%99%BE%E5%9F%8E" target="_blank" rel="noopener noreferrer">
+<div class="thumb"><div class="no-thumb"><span>VISSEL KOBE</span><small>公式チャンネル内検索</small></div><span class="play">▶</span><span class="tag">関連動画を探す</span></div>
+<div class="video-info"><small>公式チャンネル検索</small><h3>ヴィッセル神戸公式｜五百城茉央の関連動画</h3><p>公式チャンネル内で五百城茉央の出演動画を確認するための検索リンク。個別URLを確認できた動画は上に掲載。</p><span class="watch">公式チャンネルで探す ↗</span></div></a>
+</div></section></main><footer><div>MAO IOKI · UNOFFICIAL FAN SITE<br>Turquoise × Blue</div><div>非公式ファンサイトです。公式映像の権利は各権利者に帰属します。</div></footer></div><button id="back-to-top" type="button" aria-label="ページの一番上に戻る" title="一番上に戻る">↑</button>
+<script>
+(function(){
+ const btn=document.getElementById('back-to-top');
+ if(!btn)return;
+ const update=function(){btn.classList.toggle('is-visible',window.scrollY>260)};
+ window.addEventListener('scroll',update,{passive:true});
+ btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
+ update();
+})();
+</script>
+</body></html>
