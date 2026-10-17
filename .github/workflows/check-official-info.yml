@@ -1,0 +1,36 @@
+name: Check official Mao Ioki information
+
+on:
+  schedule:
+    # Daily at 06:17 JST (21:17 UTC). Avoid the top of the hour.
+    - cron: '17 21 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-info-check
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check official sources
+        run: python scripts/monitor_sources.py
+      - name: Commit source hashes and report
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add monitor-state/source-hashes.json monitor-report.md
+          if ! git diff --cached --quiet; then
+            git commit -m 'Daily official information check'
+            git push
+          fi
