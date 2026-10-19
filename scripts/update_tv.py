@@ -147,23 +147,22 @@ def main():
 
         
        
+        # Collect every official media-detail link first. The listing card title
+        # may be rendered outside the anchor, so do not filter by its text here.
         links = []
-
         pattern = re.compile(
             r'<a\b[^>]*href=["\']([^"\']*/s/n46/media/detail/[^"\']*)["\'][^>]*>(.*?)</a>',
             re.I | re.S,
         )
-
         for raw_link, raw_title in pattern.findall(page):
             title = re.sub(r"<[^>]+>", " ", raw_title)
             title = re.sub(r"\s+", " ", title).strip()
             link = stable_url(urljoin(BASE, raw_link))
-
-            if "乃木坂工事中" in title:
+            if link not in {item[0] for item in links}:
                 links.append((link, title))
 
         schedule_links_found += len(links)
-        print(f"Schedule {ym}: {len(links)} matching links")
+        print(f"Schedule {ym}: {len(links)} official media links")
         print("Link samples:", links[:5])
 
 
@@ -188,11 +187,17 @@ def main():
                 detail_page,
                 re.I | re.S,
             )
+            title_text = ""
             if page_title:
                 title_text = re.sub(r"<[^>]+>", " ", page_title.group(1))
                 title_text = re.sub(r"\s+", " ", title_text).strip()
-                if "乃木坂工事中" in title_text:
+                if title_text:
                     title = title_text
+
+            # The schedule page may contain unrelated media entries. Confirm the
+            # programme on the detail page before adding any TV episode.
+            if "乃木坂工事中" not in title_text and "乃木坂工事中" not in clean_text:
+                continue
 
             broadcast_date = extract_date(clean_text)
 
