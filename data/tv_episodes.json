@@ -9,5 +9,35 @@
     "status": "needs_review",
     "detected_at": "2026-10-19T03:40:20.401367+00:00",
     "last_checked_at": "2026-10-19T09:39:04.323937+00:00"
+  },
+  {
+    "date": "2026-10-04",
+    "category": "レギュラー",
+    "title": "テレビ東京系「乃木坂工事中」",
+    "detail": "公式スケジュールに掲載された放送回。",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/107432?ima=2124&pri1=202610&wd00=2026&wd01=10&wd02=04",
+    "source_url": "https://www.nogizaka46.com/s/n46/media/detail/107432",
+    "status": "official_schedule",
+    "detected_at": "2026-10-19T09:45:00+00:00"
+  },
+  {
+    "date": "2026-10-11",
+    "category": "レギュラー",
+    "title": "テレビ東京系「乃木坂工事中」",
+    "detail": "公式スケジュールに掲載された放送回。",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/107580?ima=4033",
+    "source_url": "https://www.nogizaka46.com/s/n46/media/detail/107580",
+    "status": "official_schedule",
+    "detected_at": "2026-10-19T09:45:00+00:00"
+  },
+  {
+    "date": "2026-10-18",
+    "category": "レギュラー",
+    "title": "テレビ東京系「乃木坂工事中」",
+    "detail": "公式スケジュールに掲載された放送回。",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/107579?ima=3735",
+    "source_url": "https://www.nogizaka46.com/s/n46/media/detail/107579",
+    "status": "official_schedule",
+    "detected_at": "2026-10-19T09:45:00+00:00"
   }
 ]
