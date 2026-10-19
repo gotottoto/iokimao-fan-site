@@ -76,7 +76,7 @@ def links_from(url: str) -> list[tuple[str, str]]:
         full = urljoin(url, href)
         host = urlsplit(full).netloc.lower()
         if host in OFFICIAL_HOSTS and title:
-            out.append((canonical(full), clean_text(title)))
+            out.append((full, clean_text(title)))
     return out
 
 
@@ -164,7 +164,8 @@ def main() -> int:
             print(f"Schedule index unavailable: {index_url}: {exc}")
             continue
         for url, link_title in discovered:
-            if "/s/n46/media/detail/" not in url or url in known or url in candidates:
+            key = canonical(url)
+            if "/s/n46/media/detail/" not in url or key in known or key in candidates:
                 continue
             q = parse_qs(urlsplit(url).query)
             if not all(k in q for k in ("wd00", "wd01", "wd02")):
@@ -185,7 +186,7 @@ def main() -> int:
             if not category:
                 print(f"Category unclear; skipped instead of guessing: {title} | {url}")
                 continue
-            candidates[url] = {
+            candidates[key] = {
                 "date": event_date, "category": category, "title": title,
                 "detail": "乃木坂46公式スケジュールから自動取得。リンク先で内容を確認できます。",
                 "url": url, "source_url": url, "status": "official_schedule_auto",
@@ -197,7 +198,8 @@ def main() -> int:
     blog_url = BASE + "/s/n46/diary/MEMBER/list?cd=MEMBER&ct=55396"
     try:
         for url, label in links_from(blog_url):
-            if "/s/n46/diary/detail/" not in url or url in known or url in candidates:
+            key = canonical(url)
+            if "/s/n46/diary/detail/" not in url or key in known or key in candidates:
                 continue
             event_date = extract_date(url, label)
             if not event_date:
@@ -207,7 +209,7 @@ def main() -> int:
             title = re.sub(r"\s*20\d{2}\.\d{2}\.\d{2}.*$", "", label).strip()
             if not event_date or not title:
                 continue
-            candidates[url] = {
+            candidates[key] = {
                 "date": event_date, "category": "ブログ", "title": title,
                 "detail": "五百城茉央の乃木坂46公式ブログ。",
                 "url": url, "source_url": blog_url, "status": "official_blog_auto",
@@ -218,8 +220,8 @@ def main() -> int:
 
     # Publish only dated, official, relevant records; leave ambiguous items for a later check.
     additions = []
-    for url, item in candidates.items():
-        if url in known:
+    for key, item in candidates.items():
+        if key in known:
             continue
         host = urlsplit(url).netloc.lower()
         if host not in OFFICIAL_HOSTS or not item.get("date") or not item.get("title"):
