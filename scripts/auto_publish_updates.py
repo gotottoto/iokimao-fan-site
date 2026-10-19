@@ -112,7 +112,7 @@ def category_for(title: str, detail: str, url: str) -> str | None:
         return "雑誌"
     if any(k in text for k in ("ラジオ", "nhk am", "文化放送", "ニッポン放送", "tokyo fm", "j-wave", "fm yokohama", "mbsラジオ", "らじらー", "レコメン", "乃木坂46の「の」", "乃木坂46の『の』")):
         return "ラジオ"
-    if any(k in text for k in ("ランウェイ", "ファッションショー", "girlsaward", "girls award", "東京ガールズコレクション", "tgc", "idol runway collection", "irc 2026", "ファッションイベント", "ライブ/イベント", "ライブ・イベント", "全国ツアー", "真夏の全国ツアー", "ミート＆グリート", "ミート&グリート", "握手会", "リアルミーグリ", "オンラインミーグリ", "イベント", "フェス", "舞台挨拶", "公開収録", "記者会見")):
+    if any(k in text for k in ("ランウェイ", "ファッションショー", "girlsaward", "girls award", "東京ガールズコレクション", "tgc", "idol runway collection", "irc 2026", "ファッションイベント", "ライブ/イベント", "ライブ・イベント", "全国ツアー", "真夏の全国ツアー", "ミート＆グリート", "ミート&グリート", "握手会", "リアルミーグリ", "オンラインミーグリ", "ミニライブ", "発売記念", "vmaj", "イベント", "フェス", "舞台挨拶", "公開収録", "記者会見")):
         return "ライブ/イベント"
     if any(k in text for k in ("web", "配信", "showroom", "youtube", "tiktok", "instagram", "ショートドラマ", "ドラマ", "のぎ動画", "オンライン", "tbsスパークル")):
         return "WEB・配信"
