@@ -207,7 +207,7 @@ def main() -> int:
                 "date": event_date, "category": category, "title": title,
                 "detail": "乃木坂46公式スケジュールから自動取得。リンク先で内容を確認できます。",
                 "url": url, "source_url": url, "status": "official_schedule_auto",
-                "auto_added": True, "template": template_for(title, category), "detected_at": now,
+                "auto_added": True, "template": template_for(title, category), "breaking": template_for(title, category) == "selection", "detected_at": now,
             }
             time.sleep(0.1)
 
@@ -230,7 +230,7 @@ def main() -> int:
                 "date": event_date, "category": "ブログ", "title": title,
                 "detail": "五百城茉央の乃木坂46公式ブログ。",
                 "url": url, "source_url": blog_url, "status": "official_blog_auto",
-                "auto_added": True, "template": template_for(title, "ブログ"), "detected_at": now,
+                "auto_added": True, "template": template_for(title, "ブログ"), "breaking": template_for(title, title) == "selection", "detected_at": now,
             }
     except Exception as exc:
         print(f"Official blog list unavailable: {exc}")
