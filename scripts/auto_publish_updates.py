@@ -256,7 +256,7 @@ def main() -> int:
                 "date": event_date, "category": "ブログ", "title": title,
                 "detail": "五百城茉央の乃木坂46公式ブログ。",
                 "url": url, "source_url": blog_url, "status": "official_blog_auto",
-                "auto_added": True, "template": template_for(title, "ブログ"), "breaking": template_for(title, title) == "selection", "detected_at": now,
+                "auto_added": True, "template": "blog", "breaking": True, "detected_at": now,
             }
     except Exception as exc:
         print(f"Official blog list unavailable: {exc}")
