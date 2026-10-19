@@ -67,7 +67,7 @@ class LinkParser(HTMLParser):
 
     def handle_data(self, data):
         if self.href:
-            value = re.sub(r"\\s+", " ", data).strip()
+            value = re.sub(r"\s+", " ", data).strip()
             if value:
                 self.parts.append(value)
 
@@ -168,7 +168,7 @@ def main():
         # result is distinguishable from a network failure.
         if not links:
             print(f"Schedule {ym}: no media detail anchors parsed; HTML length={len(page)}")
-            print("HTML preview:", re.sub(r"\\s+", " ", page[:300])[:300])
+            print("HTML preview:", re.sub(r"\s+", " ", page[:300])[:300])
         else:
             print(f"Schedule {ym}: {len(links)} official media links")
             print("Link samples:", links[:5])
@@ -331,21 +331,21 @@ def main():
             continue
 
         # Official templates can put og:title attributes in either order.
-        meta_tags = re.findall(r"<meta\\b[^>]*>", detail_page, re.I | re.S)
+        meta_tags = re.findall(r"<meta\b[^>]*>", detail_page, re.I | re.S)
         meta_title = None
         for tag in meta_tags:
-            if not re.search(r"""\\bproperty=["']og:title["']""", tag, re.I):
+            if not re.search(r"""\bproperty=["']og:title["']""", tag, re.I):
                 continue
-            content_match = re.search(r"""\\bcontent=["']([^"']+)["']""", tag, re.I | re.S)
+            content_match = re.search(r"""\bcontent=["']([^"']+)["']""", tag, re.I | re.S)
             if content_match:
                 meta_title = content_match.group(1)
                 break
         if not meta_title:
-            title_match = re.search(r"<title\\b[^>]*>(.*?)</title>", detail_page, re.I | re.S)
+            title_match = re.search(r"<title\b[^>]*>(.*?)</title>", detail_page, re.I | re.S)
             meta_title = title_match.group(1) if title_match else None
         title = ""
-        if title_match:
-            title = re.sub(r"<[^>]+>", " ", title_match.group(1))
+        if meta_title:
+            title = re.sub(r"<[^>]+>", " ", meta_title)
             title = re.sub(r"\s+", " ", title).strip()
             title = title.replace("｜乃木坂46公式サイト", "").strip()
 
