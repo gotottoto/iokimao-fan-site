@@ -31,6 +31,8 @@ jobs:
         run: python scripts/publish_blog.py
       - name: Update TV episode candidates
         run: python scripts/update_tv.py
+      - name: Auto-publish new official schedule items
+        run: python scripts/auto_publish_updates.py
       - name: Verify Nogizaka Koujichuu archive links (manual runs only)
         if: github.event_name == 'workflow_dispatch'
         run: python scripts/verify_nogichuu_links.py
@@ -38,7 +40,7 @@ jobs:
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add monitor-state/source-hashes.json monitor-report.md data/blog_pending.json data/tv_episodes.json data/nogichuu_research.json blog.html
+          git add monitor-state/source-hashes.json monitor-report.md data/blog_pending.json data/tv_episodes.json data/nogichuu_research.json data.json blog.html
           if ! git diff --cached --quiet; then
             git commit -m 'Check official information and update archives'
             git push
