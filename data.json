@@ -366,6 +366,21 @@
     "status": "公式スケジュール確認"
   },
   {
+    "date": "2026-06-13",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 真夏の全国ツアー2026",
+    "detail": "福井・神奈川・北海道・広島・大阪・宮城・福岡・東京で開催。公演日程と会場は公式特設ページで確認できます。",
+    "url": "https://www.nogizaka46.com/s/n46/page/summer_tour2026",
+    "source_url": "https://www.nogizaka46.com/s/n46/page/summer_tour2026",
+    "publisher": "乃木坂46公式",
+    "status": "公式特設ページ確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "全国ツアー",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
     "date": "2026-05-24",
     "category": "ラジオ",
     "title": "NHK AM「らじらー！サンデー」",
