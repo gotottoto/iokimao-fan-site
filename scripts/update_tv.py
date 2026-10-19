@@ -230,8 +230,15 @@ def main():
 
         time.sleep(0.3)
 
-    # Collect official preview candidates separately.
-    for news_url in NEWS_URLS:
+    # Fallback: collect official programme-preview news. This is separate from
+    # broadcast-date history; a news publication date is not treated as an air date.
+    news_urls = []
+    for ym in month_range(MAX_MONTHS):
+        news_urls.append(BASE + f"/s/n46/news/list?ima=0000&pri1={ym}")
+    news_urls.extend(NEWS_URLS)
+
+    seen_news = set()
+    for news_url in news_urls:
         try:
             page = fetch(news_url)
         except Exception as exc:
@@ -241,21 +248,23 @@ def main():
 
         parser = LinkParser()
         parser.feed(page)
-
         candidates = [
             (link, title)
             for link, title in parser.links
+            if "/s/n46/news/detail/" in link or "/p/news/" in link
             if "乃木坂工事中" in title
             and ("次回予告" in title or "次回" in title)
         ]
 
         for link, title in candidates:
             link = stable_url(link)
-            if link in known_urls:
+            if link in known_urls or link in seen_news:
                 continue
+            seen_news.add(link)
 
+            # Preserve the preview as a candidate without inventing a broadcast date.
             existing.append({
-                "date": extract_date(title),
+                "date": None,
                 "category": "レギュラー",
                 "title": title,
                 "detail": "公式の次回予告。放送日が確認できたら更新します。",
@@ -267,7 +276,7 @@ def main():
             known_urls.add(link)
             added_previews += 1
 
-        time.sleep(0.3)
+        time.sleep(0.15)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(
