@@ -68,7 +68,7 @@ function render(){
  document.querySelector("#archive-status").textContent="掲載中："+rows.length+"件（登録済みデータ）。初回から最新回までの全放送回は順次追加します。";
  document.querySelector("#entries").innerHTML=rows.map(e=>{
    const label=e.episode?("#"+esc(e.episode)+" "):"";
-   const title=e.title||"乃木坂工事中";
+   const title=(e.title||"乃木坂工事中").replace(/^#\d+\s*/,"");
    const href=e.url||"";
    const tag=href?"a":"article";
    const actionLabel=e.status==="verified_official_youtube"?"YouTubeで見る ↗":e.status==="verified_official_broadcaster"?"番組情報を見る ↗":"公式再生リストで探す ↗";
