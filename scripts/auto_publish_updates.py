@@ -146,6 +146,20 @@ def extract_event_date(title: str, detail_text: str) -> str | None:
             return None
     return None
 
+
+def is_breaking_news(title: str, category: str, detail: str = "") -> bool:
+    """Flag substantive announcements for the homepage breaking section and X cross-posting."""
+    text = f"{title} {category} {detail}".lower()
+    keywords = (
+        "選抜", "センター", "初センター", "新曲", "新シングル", "シングル発売",
+        "発売決定", "発売記念", "初披露", "解禁", "出演決定", "開催決定",
+        "受賞", "卒業", "写真集", "初表紙", "表紙決定", "ランウェイ",
+        "girlsaward", "girls award", "東京ガールズコレクション", "vmaj",
+        "真夏の全国ツアー", "全国ツアー", "アンダーライブ", "ミニライブ",
+        "公式ブログ", "instagram", "インスタグラム",
+    )
+    return any(word in text for word in keywords)
+
 def template_for(title: str, category: str) -> str:
     text = (title or "").lower()
     if any(k in text for k in ("選抜", "センター", "フォーメーション", "卒業", "加入", "受賞")):
@@ -233,7 +247,7 @@ def main() -> int:
                 "date": event_date, "category": category, "title": title,
                 "detail": "乃木坂46公式スケジュールから自動取得。リンク先で内容を確認できます。",
                 "url": url, "source_url": url, "status": "official_schedule_auto",
-                "auto_added": True, "template": template_for(title, category), "breaking": template_for(title, category) == "selection", "detected_at": now,
+                "auto_added": True, "template": template_for(title, category), "breaking": is_breaking_news(title, category, detail_text), "detected_at": now,
             }
             time.sleep(0.1)
 
@@ -302,7 +316,7 @@ def main() -> int:
                 "url": url, "source_url": url, "status": "official_news_event_auto",
                 "auto_added": True, "template": template_for(title, category),
                 "event_type": "ミニライブ" if "ミニライブ" in title else "ライブ・イベント",
-                "breaking": False, "detected_at": now,
+                "breaking": is_breaking_news(title, category, detail_text), "detected_at": now,
             }
             time.sleep(0.1)
     except Exception as exc:
