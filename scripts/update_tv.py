@@ -1,4 +1,3 @@
-```python
 #!/usr/bin/env python3
 """Collect official Nogizaka Koujichuu preview candidates."""
 
