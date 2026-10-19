@@ -145,22 +145,25 @@ def main():
             failed_pages += 1
             continue
 
-        parser = LinkParser()
-        parser.feed(page)
         
-        print(f"HTML length: {len(page)}")
-        print(f"All links found: {len(parser.links)}")
-        print("Link samples:", parser.links[:5])
+       links = []
 
-        links = [
-            (link, title)
-            for link, title in parser.links
-            if "/s/n46/media/detail/" in link
-            and "乃木坂工事中" in title
-        ]
+       pattern = re.compile(
+           r'<a\b[^>]*href=["\']([^"\']*/s/n46/media/detail/[^"\']*)["\'][^>]*>(.*?)</a>',
+           re.I | re.S,
+       )
 
-        schedule_links_found += len(links)
-        print(f"Schedule {ym}: {len(links)} matching links")
+       for raw_link, raw_title in pattern.findall(page):
+           title = re.sub(r"<[^>]+>", " ", raw_title)
+           title = re.sub(r"\s+", " ", title).strip()
+           link = stable_url(urljoin(BASE, raw_link))
+
+           if "乃木坂工事中" in title:
+               links.append((link, title))
+
+       schedule_links_found += len(links)
+       print(f"Schedule {ym}: {len(links)} matching links")
+       print("Link samples:", links[:5])
 
         for link, title in links:
             link = stable_url(link)
