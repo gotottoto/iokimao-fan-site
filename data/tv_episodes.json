@@ -2830,5 +2830,15 @@
     "status": "verified_official_youtube",
     "title_status": "official_news_verified",
     "link_status": "verified_official_youtube"
+  },
+  {
+    "date": null,
+    "category": "レギュラー",
+    "title": "＜次回予告＞「乃木坂工事中」 TV | 2026.10.19",
+    "detail": "公式ニュース一覧で確認した次回予告。放送日は別途確認が必要です。",
+    "url": "https://sp.nogizaka46.com/p/news/102337",
+    "source_url": "https://sp.nogizaka46.com/p/news/102337",
+    "status": "needs_review",
+    "detected_at": "2026-10-19T13:21:07.962817+00:00"
   }
 ]
