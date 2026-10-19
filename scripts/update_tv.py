@@ -40,37 +40,39 @@ def fetch(url: str) -> str:
 
 
 class LinkParser(HTMLParser):
+    """Collect relevant official links; derive article titles from detail pages."""
+
     def __init__(self):
-        super().__init__()
+        super().__init__(convert_charrefs=True)
         self.links = []
         self.href = None
         self.parts = []
 
     def handle_starttag(self, tag, attrs):
+        if tag.lower() != "a":
+            return
         attrs = dict(attrs)
         href = attrs.get("href", "")
-        if tag != "a" or not href:
+        if not href:
             return
-
-        absolute = urljoin(BASE, href)
+        absolute = stable_url(urljoin(BASE, href))
         path = urlsplit(absolute).path
-
         if (
             "/s/n46/media/detail/" in path
             or "/s/n46/news/detail/" in path
             or "/p/news/" in path
         ):
-            self.href = stable_url(absolute)
+            self.href = absolute
             self.parts = []
 
     def handle_data(self, data):
         if self.href:
-            value = re.sub(r"\s+", " ", data).strip()
+            value = re.sub(r"\\s+", " ", data).strip()
             if value:
                 self.parts.append(value)
 
     def handle_endtag(self, tag):
-        if tag == "a" and self.href:
+        if tag.lower() == "a" and self.href:
             title = " ".join(self.parts).strip()
             self.links.append((self.href, title))
             self.href = None
@@ -230,14 +232,19 @@ def main():
 
         time.sleep(0.3)
 
-    # Fallback: collect official programme-preview news. This is separate from
-    # broadcast-date history; a news publication date is not treated as an air date.
+    # Fallback: inspect monthly official news archives. Archive card text can be
+    # outside the anchor, so identify candidate article URLs first and inspect
+    # each official detail page for its real title and publication date.
     news_urls = []
     for ym in month_range(MAX_MONTHS):
-        news_urls.append(BASE + f"/s/n46/news/list?ima=0000&pri1={ym}")
+        news_urls.extend([
+            BASE + f"/s/n46/news/list?dy={ym}",
+            BASE + f"/s/n46/news/list?ima=0000&pri1={ym}",
+        ])
     news_urls.extend(NEWS_URLS)
 
     seen_news = set()
+    article_urls = []
     for news_url in news_urls:
         try:
             page = fetch(news_url)
@@ -248,35 +255,62 @@ def main():
 
         parser = LinkParser()
         parser.feed(page)
-        candidates = [
-            (link, title)
-            for link, title in parser.links
-            if "/s/n46/news/detail/" in link or "/p/news/" in link
-            if "乃木坂工事中" in title
-            and ("次回予告" in title or "次回" in title)
-        ]
+        for link, _title in parser.links:
+            path = urlsplit(link).path
+            if ("/s/n46/news/detail/" in path or "/p/news/" in path) and link not in seen_news:
+                seen_news.add(link)
+                article_urls.append(link)
+        time.sleep(0.1)
 
-        for link, title in candidates:
-            link = stable_url(link)
-            if link in known_urls or link in seen_news:
-                continue
-            seen_news.add(link)
+    print("Official news article links discovered:", len(article_urls))
+    for link in article_urls:
+        if link in known_urls:
+            continue
+        try:
+            detail_page = fetch(link)
+        except Exception as exc:
+            print(f"News detail fetch failed: {link}: {exc}")
+            failed_pages += 1
+            continue
 
-            # Preserve the preview as a candidate without inventing a broadcast date.
-            existing.append({
-                "date": None,
-                "category": "レギュラー",
-                "title": title,
-                "detail": "公式の次回予告。放送日が確認できたら更新します。",
-                "url": link,
-                "source_url": link,
-                "status": "needs_review",
-                "detected_at": now,
-            })
-            known_urls.add(link)
-            added_previews += 1
+        title_match = re.search(
+            r'<meta\\s+property=["\\']og:title["\\']\\s+content=["\\']([^"\\']+)["\\']',
+            detail_page, re.I
+        )
+        if not title_match:
+            title_match = re.search(
+                r"<title\\b[^>]*>(.*?)</title>", detail_page, re.I | re.S
+            )
+        title = ""
+        if title_match:
+            title = re.sub(r"<[^>]+>", " ", title_match.group(1))
+            title = re.sub(r"\\s+", " ", title).strip()
+            title = title.replace("｜乃木坂46公式サイト", "").strip()
 
-        time.sleep(0.15)
+        plain = re.sub(r"<script\\b[^>]*>.*?</script>|<style\\b[^>]*>.*?</style>", " ", detail_page, flags=re.I | re.S)
+        plain = re.sub(r"<[^>]+>", " ", plain)
+        plain = re.sub(r"\\s+", " ", plain)
+        if "乃木坂工事中" not in (title + " " + plain):
+            continue
+        if "次回予告" not in title and "次回" not in title:
+            continue
+
+        publication_date = extract_date(plain)
+        existing.append({
+            "date": None,
+            "category": "レギュラー",
+            "title": title or "＜次回予告＞「乃木坂工事中」",
+            "detail": "公式の次回予告。日付は記事掲載日であり、放送日としては扱っていません。",
+            "url": link,
+            "source_url": link,
+            "status": "needs_review",
+            "detected_at": now,
+            "publication_date": publication_date,
+        })
+        known_urls.add(link)
+        added_previews += 1
+        print(f"Preview candidate found: {title} | {link}")
+        time.sleep(0.1)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(
