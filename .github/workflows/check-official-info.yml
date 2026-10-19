@@ -1,6 +1,11 @@
 name: Check official Mao Ioki information
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/create_x_drafts.py'
+      - '.github/workflows/check-official-info.yml'
   schedule:
     # Every 30 minutes (UTC); scheduled runs can be delayed by GitHub Actions load.
     - cron: '7,37 * * * *'
