@@ -63,7 +63,7 @@ def candidates(url):
         return [url]
     year, month, y2, m2, day, _clock = m.groups()
     stem = f"{BASE}/{year}{month}/21932_{y2}{m2}{day}"
-    return [stem + "2400.html", stem + "2430.html"]
+    return [stem + clock + ".html" for clock in ("2400", "2415", "2430", "2455")]
 
 def main():
     if not FILE.exists():
