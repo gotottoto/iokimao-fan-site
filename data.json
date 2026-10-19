@@ -671,14 +671,14 @@
     "date": "2025-10-18",
     "category": "ライブ/イベント",
     "title": "Rakuten GirlsAward 2025 AUTUMN/WINTER — 乃木坂46ライブ出演",
-    "detail": "乃木坂46がアーティストとしてライブ出演。ランウェイのモデル出演者とは分けて掲載。",
+    "detail": "乃木坂46がアーティストライブに出演。五百城茉央もモデルとしてランウェイに登場。",
     "url": "https://award-inc.co.jp/news/2575",
     "source_url": "https://award-inc.co.jp/news/2575",
     "publisher": "GirlsAward公式",
     "status": "主催者公式告知確認済み",
     "auto_added": true,
     "template": "event",
-    "event_type": "ファッションイベント・ライブ",
+    "event_type": "ランウェイ・ライブ",
     "breaking": false,
     "detected_at": "2026-10-19T21:00:00+09:00"
   },
@@ -725,6 +725,21 @@
     "auto_added": true,
     "template": "event",
     "event_type": "全国ツアー",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
+    "date": "2025-05-03",
+    "category": "ライブ/イベント",
+    "title": "Rakuten GirlsAward 2025 SPRING/SUMMER — 乃木坂46ライブ出演",
+    "detail": "乃木坂46がアーティストライブのトップバッターとして出演。ランウェイモデル出演とは区別して掲載。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/101005",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/101005",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ファッションイベント・ライブ",
     "breaking": false,
     "detected_at": "2026-10-19T21:00:00+09:00"
   },
@@ -863,6 +878,21 @@
     "detail": "インタビュー",
     "url": "https://www.fujisan.co.jp/product/1281680620/b/2605554/",
     "status": "掲載情報で確認"
+  },
+  {
+    "date": "2024-12-14",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 大感謝祭2024",
+    "detail": "2024年12月14日・15日、幕張メッセ イベントホールで開催。",
+    "url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "source_url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブ一覧確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ファンイベント",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2024-12-09",
@@ -1023,6 +1053,21 @@
     "link_status": "個別リンク確認中"
   },
   {
+    "date": "2024-06-07",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 35thSGアンダーライブ",
+    "detail": "2024年6月7日〜9日、有明アリーナで開催。",
+    "url": "https://www.nogizaka46.com/s/n46/live/L192",
+    "source_url": "https://www.nogizaka46.com/s/n46/live/L192",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブページ確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "アンダーライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
     "date": "2024-05-26",
     "category": "テレビ",
     "title": "日本テレビ「夜バゲット」",
@@ -1031,6 +1076,21 @@
     "publisher": "日本テレビ",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2024-05-11",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 山下美月 卒業コンサート",
+    "detail": "2024年5月11日・12日、東京ドームで開催。",
+    "url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "source_url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブ一覧確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "卒業コンサート",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2024-05-03",
@@ -1464,6 +1524,21 @@
     "url": "",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2023-04-05",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 32ndSGアンダーライブ",
+    "detail": "2023年4月5日〜27日、東京・大阪・愛知などで開催。",
+    "url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "source_url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブ一覧確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "アンダーライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2023-04-04",
