@@ -264,6 +264,8 @@ def main():
 
     print("Official news article links discovered:", len(article_urls))
     for link, list_title in article_urls:
+        print(f"NEWS INDEX ITEM: title={list_title!r} | url={link}")
+    for link, list_title in article_urls:
         if link in known_urls:
             continue
         # Use a title already present in the official index when available.
@@ -310,14 +312,19 @@ def main():
             failed_pages += 1
             continue
 
-        title_match = re.search(
-            r"""<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']""",
-            detail_page, re.I
-        )
-        if not title_match:
-            title_match = re.search(
-                r"<title\b[^>]*>(.*?)</title>", detail_page, re.I | re.S
-            )
+        # Official templates can put og:title attributes in either order.
+        meta_tags = re.findall(r"<meta\\b[^>]*>", detail_page, re.I | re.S)
+        meta_title = None
+        for tag in meta_tags:
+            if not re.search(r"""\\bproperty=["']og:title["']""", tag, re.I):
+                continue
+            content_match = re.search(r"""\\bcontent=["']([^"']+)["']""", tag, re.I | re.S)
+            if content_match:
+                meta_title = content_match.group(1)
+                break
+        if not meta_title:
+            title_match = re.search(r"<title\\b[^>]*>(.*?)</title>", detail_page, re.I | re.S)
+            meta_title = title_match.group(1) if title_match else None
         title = ""
         if title_match:
             title = re.sub(r"<[^>]+>", " ", title_match.group(1))
