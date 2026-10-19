@@ -1,12 +1,9 @@
+```python
 #!/usr/bin/env python3
-"""Collect official Nogizaka Koujichuu preview links as review candidates.
+"""Collect official Nogizaka Koujichuu preview candidates."""
 
-This deliberately does NOT guess Mao Ioki's appearance status or publish episode
-summaries as confirmed. The official preview/news page is used as a candidate
-source; review candidates are merged into data/tv_episodes.json without deleting
-existing records.
-"""
 from __future__ import annotations
+
 import json
 import re
 from datetime import datetime, timezone
@@ -35,81 +32,126 @@ class NewsParser(HTMLParser):
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
-        if tag == "a" and attrs.get("href") and "/s/n46/news/detail/" in attrs["href"]:
-            self.href = stable_url(urljoin(BASE, attrs["href"]))
-            self.parts = []
+        href = attrs.get("href", "")
+
+        if tag == "a" and href:
+            absolute = urljoin(BASE, href)
+            path = urlsplit(absolute).path
+
+            if "/news/detail/" in path:
+                self.href = stable_url(absolute)
+                self.parts = []
 
     def handle_data(self, data):
         if self.href:
-            s = re.sub(r"\s+", " ", data).strip()
-            if s:
-                self.parts.append(s)
+            text = re.sub(r"\s+", " ", data).strip()
+            if text:
+                self.parts.append(text)
 
     def handle_endtag(self, tag):
         if tag == "a" and self.href:
             title = " ".join(self.parts).strip()
             if title:
                 self.links.append((self.href, title))
+
             self.href = None
             self.parts = []
 
 
 def fetch(url: str) -> str:
-    req = Request(url, headers={"User-Agent": "MaoIokiFanSite/1.0 (official preview candidate collector)"})
-    with urlopen(req, timeout=30) as response:
+    request = Request(
+        url,
+        headers={
+            "User-Agent": "Mozilla/5.0 (compatible; MaoIokiFanSite/1.0)"
+        },
+    )
+    with urlopen(request, timeout=30) as response:
         charset = response.headers.get_content_charset() or "utf-8"
         return response.read().decode(charset, errors="replace")
 
 
 def main() -> int:
-    try:
-        html = fetch(NEWS_URL)
-    except Exception as exc:
-        raise SystemExit(f"Official news fetch failed; existing data was not changed: {exc}")
+    page = fetch(NEWS_URL)
 
     parser = NewsParser()
-    parser.feed(html)
-    # Only collect links whose visible title looks like an official programme preview.
-    candidates = [(url, title) for url, title in parser.links if "乃木坂工事中" in title and ("次回予告" in title or "次回" in title)]
+    parser.feed(page)
+
+    print(f"Fetched page: {NEWS_URL}")
+    print(f"Official news detail links found: {len(parser.links)}")
+
+    # Diagnostic output: show matching titles even if they are not
+    # recognized as previews.
+    matching = [
+        (url, title)
+        for url, title in parser.links
+        if "乃木坂工事中" in title
+    ]
+
+    print(f"Links mentioning 乃木坂工事中: {len(matching)}")
+    for url, title in matching[:20]:
+        print(f"  TITLE: {title}")
+        print(f"  URL: {url}")
+
+    candidates = [
+        (url, title)
+        for url, title in matching
+        if "次回予告" in title or "次回" in title
+    ]
 
     if OUTPUT.exists():
-        try:
-            existing = json.loads(OUTPUT.read_text(encoding="utf-8"))
-        except (OSError, json.JSONDecodeError) as exc:
-            raise SystemExit(f"Cannot read {OUTPUT}: {exc}")
+        existing = json.loads(OUTPUT.read_text(encoding="utf-8"))
     else:
         existing = []
-    if not isinstance(existing, list):
-        raise SystemExit("data/tv_episodes.json must contain a JSON list")
 
-    known = {stable_url(x.get("source_url", "")) for x in existing if isinstance(x, dict) and x.get("source_url")}
-    now = datetime.now(timezone.utc).isoformat()
+    if not isinstance(existing, list):
+        raise SystemExit("tv_episodes.json must contain a JSON list.")
+
+    known = {
+        stable_url(item["source_url"])
+        for item in existing
+        if isinstance(item, dict) and item.get("source_url")
+    }
+
     added = 0
+    now = datetime.now(timezone.utc).isoformat()
+
     for url, title in candidates:
         url = stable_url(url)
+
         if url in known:
             continue
+
         existing.append({
             "date": None,
             "category": "レギュラー",
             "title": title,
-            "detail": "公式の次回予告候補。放送日・内容・五百城茉央の出演有無を確認してください。",
+            "detail": (
+                "公式の次回予告候補。放送日・内容・"
+                "五百城茉央の出演有無を確認してください。"
+            ),
             "url": url,
             "source_url": url,
             "appearance": "要確認",
             "status": "needs_review",
             "detected_at": now,
         })
+
         known.add(url)
         added += 1
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(existing, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    OUTPUT.write_text(
+        json.dumps(existing, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
+
     print(f"Official preview candidates found: {len(candidates)}")
     print(f"New review candidates added: {added}")
-    print("No appearance status was guessed; existing episode records were preserved.")
+    print("Existing records preserved; appearance status was not guessed.")
+
     return 0
 
 
 if __name__ == "__main__":
     raise SystemExit(main())
+```
