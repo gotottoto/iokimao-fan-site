@@ -72,7 +72,7 @@ def fetch(url: str) -> str:
 def main() -> int:
     page = fetch(NEWS_URL)
     print("HTML length:", len(page))
-　  print("HTML preview:", page[:500])
+    print("HTML preview:", page[:500])
 
     parser = NewsParser()
     parser.feed(page)
