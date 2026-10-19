@@ -2900,14 +2900,16 @@
     {
       "date": "2026-10-18",
       "episode": 586,
-      "title": "#586 乃木坂46 いい旅選手権2026",
-      "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202610/21932_202610182415.html",
+      "title": "#586 乃木坂46 いい旅選手権2026 前編",
+      "detail": "乃木坂46公式ニュースでYouTubeリンクを確認。",
+      "url": "https://youtu.be/UECA4l931rk",
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202610/21932_202610182415.html",
-      "status": "link_check_pending",
-      "title_status": "verified_official_broadcaster",
-      "link_status": "verified_official_broadcaster",
-      "source_archive": "https://nogizaka46data.blogspot.com/"
+      "status": "youtube_verified",
+      "title_status": "official_news_verified",
+      "link_status": "verified_official_youtube",
+      "source_archive": "https://nogizaka46data.blogspot.com/",
+      "youtube_url": "https://youtu.be/UECA4l931rk",
+      "official_url": "https://www.nogizaka46.com/s/n46/news/detail/102336"
     }
   ]
 }
