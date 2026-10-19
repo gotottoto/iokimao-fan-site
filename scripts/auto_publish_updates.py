@@ -104,19 +104,21 @@ def extract_date(url: str, text: str) -> str | None:
 
 
 def category_for(title: str, detail: str, url: str) -> str | None:
-    text = (title + " " + detail + " " + url).lower()
+    # Classify from the event title first. The detail page contains shared site
+    # navigation, so using arbitrary page text would misclassify every item.
+    text = (title + " " + url).lower()
     if "/diary/detail/" in url:
         return "ブログ"
-    if any(k in text for k in ("雑誌", "グラビア", "巻頭", "掲載誌", "ムック", "写真集", "書籍", "単行本", "brody", "ex大衆", "アップトゥボーイ", "b.l.t.", "blt")):
+    if any(k in text for k in ("雑誌", "グラビア", "巻頭", "掲載誌", "ムック", "写真集", "書籍", "単行本", "brody", "ex大衆", "アップトゥボーイ", "b.l.t.", "blt", "classy.", "週刊少年", "ヤングジャンプ")):
         return "雑誌"
-    if any(k in text for k in ("ラジオ", "nhk am", "文化放送", "ニッポン放送", "tokyo fm", "j-wave", "fm yokohama", "mbsラジオ", "らじらー", "レコメン", "乃木坂46の「の」")):
+    if any(k in text for k in ("ラジオ", "nhk am", "文化放送", "ニッポン放送", "tokyo fm", "j-wave", "fm yokohama", "mbsラジオ", "らじらー", "レコメン", "乃木坂46の「の」", "乃木坂46の『の』")):
         return "ラジオ"
-    if any(k in text for k in ("web", "配信", "showroom", "youtube", "tiktok", "instagram", "ショートドラマ", "ドラマ", "のぎ動画", "オンライン")):
+    if any(k in text for k in ("web", "配信", "showroom", "youtube", "tiktok", "instagram", "ショートドラマ", "ドラマ", "のぎ動画", "オンライン", "tbsスパークル")):
         return "WEB・配信"
-    if any(k in text for k in ("テレビ", "tv", "放送", "出演番組", "music house", "よんチャン", "音道楽", "venue101", "乃木坂工事中", "めざまし", "music station")):
+    if any(k in text for k in ("テレビ", "tv", "放送", "出演番組", "music house", "よんチャン", "音道楽", "venue101", "乃木坂工事中", "めざまし", "music station", "テレビ東京", "フジテレビ", "テレビ朝日", "読売テレビ", "abcテレビ", "カンテレ", "nhk総合", "tbs系", "ytv")):
         return "テレビ"
+    # If the title does not provide enough evidence, skip it rather than guess.
     return None
-
 
 def detail_for(url: str) -> tuple[str, str]:
     page = fetch(url)
