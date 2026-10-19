@@ -225,7 +225,7 @@ def main() -> int:
     for key, item in candidates.items():
         if key in known:
             continue
-        host = urlsplit(url).netloc.lower()
+        host = urlsplit(item.get("url", "")).netloc.lower()
         if host not in OFFICIAL_HOSTS or not item.get("date") or not item.get("title"):
             continue
         additions.append(item)
