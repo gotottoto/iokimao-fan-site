@@ -1,11 +1,13 @@
+
 #!/usr/bin/env python3
-"""Collect official Nogizaka Koujichuu preview candidates."""
+"""Collect official Nogizaka Koujichuu schedule and preview candidates."""
 
 from __future__ import annotations
 
 import json
 import re
-from datetime import datetime, timezone
+import time
+from datetime import date, datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urljoin, urlsplit, urlunsplit
@@ -13,16 +15,31 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "tv_episodes.json"
-NEWS_URL = "https://sp.nogizaka46.com/p/news"
+
 BASE = "https://www.nogizaka46.com"
+SCHEDULE_URL = BASE + "/s/n46/media/list?dy={ym}&ima=0000"
+NEWS_URLS = [
+    "https://sp.nogizaka46.com/p/news",
+    BASE + "/s/n46/news/list",
+]
+
+USER_AGENT = "Mozilla/5.0 (compatible; MaoIokiFanSite/1.0)"
+MAX_MONTHS = 36
 
 
 def stable_url(url: str) -> str:
     p = urlsplit(url)
-    return urlunsplit((p.scheme, p.netloc, p.path, "", ""))
+    return urlunsplit((p.scheme, p.netloc, p.path.rstrip("/"), "", ""))
 
 
-class NewsParser(HTMLParser):
+def fetch(url: str) -> str:
+    request = Request(url, headers={"User-Agent": USER_AGENT})
+    with urlopen(request, timeout=30) as response:
+        charset = response.headers.get_content_charset() or "utf-8"
+        return response.read().decode(charset, errors="replace")
+
+
+class LinkParser(HTMLParser):
     def __init__(self):
         super().__init__()
         self.links = []
@@ -32,112 +49,205 @@ class NewsParser(HTMLParser):
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
         href = attrs.get("href", "")
+        if tag != "a" or not href:
+            return
 
-        if tag == "a" and href:
-            absolute = urljoin(BASE, href)
-            path = urlsplit(absolute).path
+        absolute = urljoin(BASE, href)
+        path = urlsplit(absolute).path
 
-            if "/p/news/" in path and path.rstrip("/").split("/")[-1].isdigit():
-                self.href = stable_url(absolute)
-                self.parts = []
+        if (
+            "/s/n46/media/detail/" in path
+            or "/s/n46/news/detail/" in path
+            or "/p/news/" in path
+        ):
+            self.href = stable_url(absolute)
+            self.parts = []
 
     def handle_data(self, data):
         if self.href:
-            text = re.sub(r"\s+", " ", data).strip()
-            if text:
-                self.parts.append(text)
+            value = re.sub(r"\s+", " ", data).strip()
+            if value:
+                self.parts.append(value)
 
     def handle_endtag(self, tag):
         if tag == "a" and self.href:
             title = " ".join(self.parts).strip()
-            if title:
-                self.links.append((self.href, title))
-
+            self.links.append((self.href, title))
             self.href = None
             self.parts = []
 
 
-def fetch(url: str) -> str:
-    request = Request(
-        url,
-        headers={
-            "User-Agent": "Mozilla/5.0 (compatible; MaoIokiFanSite/1.0)"
-        },
-    )
-    with urlopen(request, timeout=30) as response:
-        charset = response.headers.get_content_charset() or "utf-8"
-        return response.read().decode(charset, errors="replace")
+def month_range(count):
+    today = date.today()
+    year, month = today.year, today.month
+
+    for _ in range(count):
+        yield f"{year:04d}{month:02d}"
+        month -= 1
+        if month == 0:
+            month = 12
+            year -= 1
 
 
-def main() -> int:
-    page = fetch(NEWS_URL)
-    print("HTML length:", len(page))
-    print("HTML preview:", page[:500])
+def extract_date(text):
+    match = re.search(r"(20\d{2})[./年-](\d{1,2})[./月-](\d{1,2})", text)
+    if not match:
+        return None
+    try:
+        return date(
+            int(match.group(1)),
+            int(match.group(2)),
+            int(match.group(3)),
+        ).isoformat()
+    except ValueError:
+        return None
 
-    parser = NewsParser()
-    parser.feed(page)
 
-    print(f"Fetched page: {NEWS_URL}")
-    print(f"Official news detail links found: {len(parser.links)}")
+def load_existing():
+    if not OUTPUT.exists():
+        return []
 
-    # Diagnostic output: show matching titles even if they are not
-    # recognized as previews.
-    matching = [
-        (url, title)
-        for url, title in parser.links
-        if "乃木坂工事中" in title
-    ]
+    try:
+        data = json.loads(OUTPUT.read_text(encoding="utf-8"))
+    except (OSError, json.JSONDecodeError) as exc:
+        raise SystemExit(f"Cannot read existing TV data: {exc}")
 
-    print(f"Links mentioning 乃木坂工事中: {len(matching)}")
-    for url, title in matching[:20]:
-        print(f"  TITLE: {title}")
-        print(f"  URL: {url}")
-
-    candidates = [
-        (url, title)
-        for url, title in matching
-        if "次回予告" in title or "次回" in title
-    ]
-
-    if OUTPUT.exists():
-        existing = json.loads(OUTPUT.read_text(encoding="utf-8"))
-    else:
-        existing = []
-
-    if not isinstance(existing, list):
+    if not isinstance(data, list):
         raise SystemExit("tv_episodes.json must contain a JSON list.")
 
-    known = {
-        stable_url(item["source_url"])
-        for item in existing
-        if isinstance(item, dict) and item.get("source_url")
-    }
+    return data
 
-    added = 0
+
+def main():
+    existing = load_existing()
     now = datetime.now(timezone.utc).isoformat()
 
-    for url, title in candidates:
-        url = stable_url(url)
+    # Preserve all existing records. Deduplicate new discoveries by URL.
+    known_urls = {
+        stable_url(item.get("url", ""))
+        for item in existing
+        if isinstance(item, dict) and item.get("url")
+    }
 
-        if url in known:
+    added_schedule = 0
+    added_previews = 0
+    failed_pages = 0
+    schedule_links_found = 0
+
+    # Collect historical and current official schedule entries.
+    for ym in month_range(MAX_MONTHS):
+        url = SCHEDULE_URL.format(ym=ym)
+
+        try:
+            page = fetch(url)
+        except Exception as exc:
+            print(f"Schedule fetch failed ({ym}): {exc}")
+            failed_pages += 1
             continue
 
-        existing.append({
-            "date": None,
-            "category": "レギュラー",
-            "title": title,
-            "detail": (
-                "公式の次回予告候補。放送日・内容・"
-                "五百城茉央の出演有無を確認してください。"
-            ),
-            "url": url,
-            "source_url": url,
-            "status": "needs_review",
-            "detected_at": now,
-        })
+        parser = LinkParser()
+        parser.feed(page)
 
-        known.add(url)
-        added += 1
+        links = [
+            (link, title)
+            for link, title in parser.links
+            if "/s/n46/media/detail/" in link
+            and "乃木坂工事中" in title
+        ]
+
+        schedule_links_found += len(links)
+        print(f"Schedule {ym}: {len(links)} matching links")
+
+        for link, title in links:
+            link = stable_url(link)
+            if link in known_urls:
+                continue
+
+            try:
+                detail_page = fetch(link)
+            except Exception as exc:
+                print(f"Detail fetch failed: {link}: {exc}")
+                failed_pages += 1
+                continue
+
+            # The official detail page contains the broadcast date.
+            clean_text = re.sub(r"<[^>]+>", " ", detail_page)
+            clean_text = re.sub(r"\s+", " ", clean_text)
+
+            page_title = re.search(
+                r"<h1\b[^>]*>(.*?)</h1>",
+                detail_page,
+                re.I | re.S,
+            )
+            if page_title:
+                title_text = re.sub(r"<[^>]+>", " ", page_title.group(1))
+                title_text = re.sub(r"\s+", " ", title_text).strip()
+                if "乃木坂工事中" in title_text:
+                    title = title_text
+
+            broadcast_date = extract_date(clean_text)
+
+            # Only add records when the official detail page confirms
+            # the date. Never guess a broadcast date from the listing.
+            if not broadcast_date:
+                print(f"Date not confirmed; skipped: {link}")
+                continue
+
+            existing.append({
+                "date": broadcast_date,
+                "category": "レギュラー",
+                "title": "テレビ東京系「乃木坂工事中」",
+                "detail": "公式スケジュールに掲載された放送回。",
+                "url": link,
+                "source_url": link,
+                "status": "official_schedule",
+                "detected_at": now,
+            })
+            known_urls.add(link)
+            added_schedule += 1
+
+            time.sleep(0.3)
+
+        time.sleep(0.3)
+
+    # Collect official preview candidates separately.
+    for news_url in NEWS_URLS:
+        try:
+            page = fetch(news_url)
+        except Exception as exc:
+            print(f"News fetch failed: {news_url}: {exc}")
+            failed_pages += 1
+            continue
+
+        parser = LinkParser()
+        parser.feed(page)
+
+        candidates = [
+            (link, title)
+            for link, title in parser.links
+            if "乃木坂工事中" in title
+            and ("次回予告" in title or "次回" in title)
+        ]
+
+        for link, title in candidates:
+            link = stable_url(link)
+            if link in known_urls:
+                continue
+
+            existing.append({
+                "date": extract_date(title),
+                "category": "レギュラー",
+                "title": title,
+                "detail": "公式の次回予告。放送日が確認できたら更新します。",
+                "url": link,
+                "source_url": link,
+                "status": "needs_review",
+                "detected_at": now,
+            })
+            known_urls.add(link)
+            added_previews += 1
+
+        time.sleep(0.3)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(
@@ -145,12 +255,12 @@ def main() -> int:
         encoding="utf-8",
     )
 
-    print(f"Official preview candidates found: {len(candidates)}")
-    print(f"New review candidates added: {added}")
-    print("Existing records preserved; appearance status was not guessed.")
-
-    return 0
+    print("Schedule links found:", schedule_links_found)
+    print("Historical schedule records added:", added_schedule)
+    print("Preview candidates added:", added_previews)
+    print("Failed page requests:", failed_pages)
+    print("Total records preserved and stored:", len(existing))
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    main()
