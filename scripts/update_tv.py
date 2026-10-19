@@ -281,8 +281,8 @@ def main():
         last_error = None
         for candidate_url in dict.fromkeys(candidates):
             try:
-                fetched_url, detail_page = fetch(candidate_url)
-                fetched_url = stable_url(fetched_url)
+                detail_page = fetch(candidate_url)
+                fetched_url = stable_url(candidate_url)
                 break
             except Exception as exc:
                 last_error = exc
