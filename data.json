@@ -1,5 +1,66 @@
 [
   {
+    "date": "2026-11-07",
+    "category": "ライブ/イベント",
+    "title": "42ndシングル「是非に及ばず」発売記念ミニライブ（メンバー解説付き配信）",
+    "detail": "収録曲のパフォーマンスをメンバー解説付きで配信予定。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/102051",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102051",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ミニライブ"
+  },
+  {
+    "date": "2026-10-31",
+    "category": "ライブ/イベント",
+    "title": "42ndシングル「是非に及ばず」発売記念ミニライブ（アーカイブ配信）",
+    "detail": "収録曲のパフォーマンスをアーカイブ配信予定。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/102051",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102051",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ミニライブ"
+  },
+  {
+    "date": "2026-10-29",
+    "category": "ライブ/イベント",
+    "title": "MTV VMAJ 2026 — 乃木坂46 LIVE ACT出演",
+    "detail": "東京ドーム開催。開場16:00／開演18:00。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/102158",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102158",
+    "publisher": "乃木坂46公式",
+    "status": "公式出演告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "音楽アワード"
+  },
+  {
+    "date": "2026-10-23",
+    "category": "ライブ/イベント",
+    "title": "42ndシングル「是非に及ばず」発売記念ミニライブ（配信）",
+    "detail": "収録曲のパフォーマンスをライブ配信予定。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/102051",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102051",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ミニライブ"
+  },
+  {
+    "date": "2026-10-22",
+    "category": "雑誌",
+    "title": "BRODY 2026年12月号",
+    "detail": "表紙・巻頭グラビア・インタビュー。旅館を舞台にした23ページ特集。",
+    "url": "https://books.rakuten.co.jp/rb/18854495/",
+    "publisher": "白夜書房",
+    "status": "発売日・表紙・特集内容を販売情報および報道で確認"
+  },
+  {
     "date": "2026-10-19",
     "category": "選抜発表",
     "title": "43枚目シングル「君ロス」で選抜メンバーに選出されました！！！",
@@ -11,15 +72,6 @@
     "template": "selection",
     "detected_at": "2026-10-19T21:00:00+09:00",
     "breaking": true
-  },
-  {
-    "date": "2026-10-22",
-    "category": "雑誌",
-    "title": "BRODY 2026年12月号",
-    "detail": "表紙・巻頭グラビア・インタビュー。旅館を舞台にした23ページ特集。",
-    "url": "https://books.rakuten.co.jp/rb/18854495/",
-    "publisher": "白夜書房",
-    "status": "発売日・表紙・特集内容を販売情報および報道で確認"
   },
   {
     "date": "2026-10-18",
@@ -120,6 +172,19 @@
     "detail": "五百城茉央・川﨑桜。20:05～22:55。",
     "url": "https://www.nogizaka46.com/s/n46/media/detail/107447?ima=2955&pri1=202609&wd00=2026&wd01=09&wd02=27",
     "status": "公式個別スケジュール確認"
+  },
+  {
+    "date": "2026-09-26",
+    "category": "ライブ/イベント",
+    "title": "Rakuten GirlsAward 2026 AUTUMN/WINTER — 乃木坂46出演・五百城茉央ランウェイ",
+    "detail": "乃木坂46がアーティスト出演。五百城茉央はモデルとしても出演。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/102225",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102225",
+    "publisher": "乃木坂46公式",
+    "status": "公式出演告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ランウェイ・ライブ"
   },
   {
     "date": "2026-09-21",
@@ -349,6 +414,19 @@
     "detail": "表紙・巻頭グラビア",
     "url": "https://www.akitashoten.co.jp/w-champion/",
     "status": "掲載情報あり・個別ページ要照合"
+  },
+  {
+    "date": "2026-04-18",
+    "category": "ライブ/イベント",
+    "title": "Rakuten GirlsAward 2026 SPRING/SUMMER — 乃木坂46出演・五百城茉央ランウェイ",
+    "detail": "乃木坂46がアーティスト出演。五百城茉央はモデルとしても出演。",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/106786?ima=2736&pri1=202604&wd00=2026&wd01=04&wd02=18",
+    "source_url": "https://www.nogizaka46.com/s/n46/media/detail/106786?ima=2736&pri1=202604&wd00=2026&wd01=04&wd02=18",
+    "publisher": "乃木坂46公式",
+    "status": "公式スケジュール確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ランウェイ・ライブ"
   },
   {
     "date": "2026-04-18",
