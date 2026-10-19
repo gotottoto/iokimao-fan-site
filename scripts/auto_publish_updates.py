@@ -260,7 +260,7 @@ def main() -> int:
 
     # Official news includes group-wide live events, runway appearances, and single mini-lives.
     news_index = BASE + "/s/n46/news/list"
-    event_news_keywords = ("ライブ", "イベント", "ランウェイ", "girlsaward", "tgc", "vmaj", "ミニライブ", "発売記念", "フェス", "ミート＆グリート", "ミート&グリート", "コンサート")
+    event_news_keywords = ("ランウェイ", "girlsaward", "東京ガールズコレクション", "tgc", "idol runway", "vmaj", "真夏の全国ツアー", "全国ツアー", "アンダーライブ", "ミニライブ", "フェス", "ミート＆グリート", "ミート&グリート", "コンサート", "ライブ出演")
     try:
         news_links = links_from(news_index)
         checked_news = 0
@@ -281,7 +281,10 @@ def main() -> int:
                 print(f"Official news detail unavailable: {url}: {exc}")
                 continue
             title = detail_title or link_title
-            if not any(name in (title + " " + detail_text) for name in ("五百城", "乃木坂46")):
+            event_text = title + " " + detail_text
+            if re.search(r"Mステ|ミュージックステーション|CDTV|乃木坂工事中|music station|テレビ東京|フジテレビ|テレビ朝日|NHK総合|ラジオ", event_text, re.I):
+                continue
+            if not any(name in event_text for name in ("五百城", "乃木坂46")):
                 continue
             category = category_for(title, detail_text, url)
             if category != "ライブ/イベント":
