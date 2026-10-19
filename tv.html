@@ -52,7 +52,7 @@ body,body *:not(svg):not(path){font-family:"Zen Maru Gothic","Hiragino Maru Goth
 render();
 fetch("data.json").then(r=>{if(!r.ok)throw new Error("data.json unavailable");return r.json()}).then(items=>{
  const extra=(Array.isArray(items)?items:[]).filter(e=>e&&e.auto_added===true&&(e.category||"").includes("テレビ"));
- const key=e=>(String(e.url||"").split("?")[0].replace(/\\/$/,"")||[e.date||"",e.title||""].join("|"));
+ const key=e=>{const u=String(e.url||"").split("?")[0];return (u.endsWith("/")?u.slice(0,-1):u)||[e.date||"",e.title||""].join("|")};
  const seen=new Set(DATA.map(key));
  let added=0;
  for(const e of extra){const k=key(e);if(!k||seen.has(k))continue;DATA.push(e);seen.add(k);added++;}
