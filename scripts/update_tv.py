@@ -274,7 +274,7 @@ def main():
             continue
 
         title_match = re.search(
-            r'<meta\\s+property=["\\']og:title["\\']\\s+content=["\\']([^"\\']+)["\\']',
+            r"""<meta\\s+property=["']og:title["']\\s+content=["']([^"']+)["']""",
             detail_page, re.I
         )
         if not title_match:
