@@ -37,7 +37,7 @@ class NewsParser(HTMLParser):
             absolute = urljoin(BASE, href)
             path = urlsplit(absolute).path
 
-            if "/news/detail/" in path:
+            if "/p/news/" in path and path.rstrip("/").split("/")[-1].isdigit():
                 self.href = stable_url(absolute)
                 self.parts = []
 
