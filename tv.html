@@ -52,12 +52,12 @@ fetch("./data/tv_episodes.json")
       if (!item?.url || DATA.some(e => e.url === item.url)) return;
       DATA.push({
         date: item.date || "",
-        category: "レギュラー",
-        title: "乃木坂工事中",
+        category: item.category || "レギュラー",
+        title: item.title || "乃木坂工事中",
         detail: item.detail || "公式の次回予告",
         url: item.url,
-        status: "公式予告",
-        publisher: "テレビ東京系"
+        status: item.status || "公式予告",
+        publisher: item.publisher || "テレビ東京系"
       });
     });
     render();
