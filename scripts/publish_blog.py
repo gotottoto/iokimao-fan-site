@@ -36,8 +36,18 @@ def parse_entry(item):
             date = None
 
     # Backward compatibility for older pending entries whose title ends in a date.
+    # New candidates may store the date in a separate "date" field.
+    date = None
+    date_value = item.get("date")
+    if isinstance(date_value, str) and date_value.strip():
+        try:
+            date = datetime.strptime(date_value[:10], "%Y-%m-%d")
+        except ValueError:
+            date = None
+
+    # Keep compatibility with older entries that append the date to the title.
     match = re.search(
-        r"\s+(\d{4})[./-](\d{2})[./-](\d{2})(?:\s+\d{1,2}:\d{2})?$",
+        r"\\s+(\\d{4})[./-](\\d{2})[./-](\\d{2})(?:\\s+\\d{1,2}:\\d{2})?$",
         title,
     )
     clean_title = title
