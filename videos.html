@@ -29,6 +29,13 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
 
 /* Shared navigation alignment across all pages */
 nav{align-items:center}nav a{box-sizing:border-box;display:inline-flex;align-items:center;line-height:1.5;border-bottom:2px solid transparent;padding-top:8px;padding-bottom:8px}nav a.active{border-bottom-color:var(--cyan, #7dd3e8)}
+
+/* Navigation layout lock: active/hover states must never move menu items */
+header nav{display:flex;align-items:center;gap:18px;justify-content:center;flex-wrap:wrap}
+header nav a{box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;min-height:34px;line-height:1.5;padding:8px 0;border:0;border-bottom:2px solid transparent;margin:0;transform:none;font-weight:400;white-space:nowrap}
+header nav a:hover,header nav a:focus-visible{border-bottom:2px solid transparent;transform:none}
+header nav a.active{border-bottom:2px solid var(--cyan,#08b6cd);font-weight:400}
+header nav a.active:hover{border-bottom-color:var(--cyan,#08b6cd)}
 </style><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -43,7 +50,7 @@ body,body *:not(svg):not(path){font-family:"Zen Maru Gothic","Hiragino Maru Goth
 </style>
 </head><body><div class="wrap">
 <header><a class="logo" href="index.html"><b>Mao Ioki</b><small>UNOFFICIAL FAN SITE</small></a>
-<nav><a class="" href="index.html">HOME</a><a class="" href="profile.html">PROFILE</a><a class="" href="schedule.html">SCHEDULE</a><a class="" href="tv.html">TV</a><a class="" href="magazine.html">MAGAZINE</a><a class="" href="radio.html">RADIO</a><a class="" href="web.html">WEB / DRAMA</a><a class="active" href="videos.html">VIDEOS</a><a class="" href="blog.html">BLOG</a></nav></header>
+<nav><a class="" href="index.html">HOME</a><a class="" href="profile.html">PROFILE</a><a class="" href="schedule.html">SCHEDULE</a><a class="" href="tv.html">TV</a><a class="" href="nokichuu.html">乃木坂工事中</a><a class="" href="magazine.html">MAGAZINE</a><a class="" href="radio.html">RADIO</a><a class="" href="web.html">WEB / DRAMA</a><a class="active" href="videos.html">VIDEOS</a><a class="" href="blog.html">BLOG</a></nav></header>
 <main><section class="hero"><div class="eyebrow">YOUTUBE / MUSIC VIDEO / STREAMING</div><h1>VIDEOS</h1><p>乃木坂工事中の最新公開回、五百城茉央がセンターを務めた楽曲のMV、個人出演動画、乃木坂逃避行をまとめたページ。</p></section>
 <section class="video-section"><h2>乃木坂工事中</h2><div class="video-grid">
 <a class="video-card" href="https://youtu.be/w36qOcRwauA" target="_blank" rel="noopener noreferrer">
