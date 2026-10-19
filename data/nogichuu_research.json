@@ -5,7 +5,8 @@
   "notes": [
     "Episode numbers and program titles are based on year-by-year episode archive pages and official TV Tokyo pages where available.",
     "URLs are candidate official TV Tokyo detail URLs; most have not yet been individually HTTP-verified.",
-    "Do not publish records until link_status is verified; known schedule exceptions may need 24:30 instead of 24:00."
+    "Do not publish records until link_status is verified; known schedule exceptions may need 24:30 instead of 24:00.",
+    "The current list has 236 numbered rows (#351–#586). Only a small subset of links has been individually verified; all other generated TV Tokyo URLs must be checked before the archive is published."
   ],
   "episodes": [
     {
@@ -13,11 +14,11 @@
       "episode": 351,
       "title": "#351 5期生 PR大作戦",
       "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202203/21932_202203132400.html",
-      "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202203/21932_202203132400.html",
+      "url": "https://www.nogizaka46.com/s/n46/news/detail/65348",
+      "source_url": "https://www.nogizaka46.com/s/n46/news/detail/65348",
       "status": "link_check_pending",
       "title_status": "archive_based",
-      "link_status": "needs_http_verification",
+      "link_status": "verified_official_announcement",
       "source_archive": "https://nogizaka46data.blogspot.com/"
     },
     {
@@ -29,7 +30,7 @@
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202203/21932_202203202400.html",
       "status": "link_check_pending",
       "title_status": "archive_based",
-      "link_status": "verified_sample",
+      "link_status": "verified_official_broadcaster",
       "source_archive": "https://nogizaka46data.blogspot.com/"
     },
     {
@@ -41,7 +42,7 @@
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202203/21932_202203272430.html",
       "status": "link_check_pending",
       "title_status": "archive_based",
-      "link_status": "verified_sample",
+      "link_status": "verified_official_broadcaster",
       "source_archive": "https://nogizaka46data.blogspot.com/"
     },
     {
@@ -2819,24 +2820,24 @@
     {
       "date": "2026-10-11",
       "episode": 585,
-      "title": "#585 乃木坂工事中 #585（企画名未確認）",
+      "title": "#585 乃木坂46 いい旅選手権2026",
       "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
       "url": "https://www.nogizaka46.com/s/n46/media/detail/107580?ima=4033",
       "source_url": "https://www.nogizaka46.com/s/n46/media/detail/107580?ima=4033",
       "status": "link_check_pending",
-      "title_status": "needs_title_review",
+      "title_status": "archive_based_preview",
       "link_status": "verified_sample",
       "source_archive": "https://nogizaka46data.blogspot.com/"
     },
     {
       "date": "2026-10-18",
       "episode": 586,
-      "title": "#586 乃木坂工事中 #586（企画名未確認）",
+      "title": "#586 乃木坂46 いい旅選手権2026",
       "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
       "url": "https://www.nogizaka46.com/s/n46/media/detail/107579?ima=3735",
       "source_url": "https://www.nogizaka46.com/s/n46/media/detail/107579?ima=3735",
       "status": "link_check_pending",
-      "title_status": "needs_title_review",
+      "title_status": "archive_based_preview",
       "link_status": "verified_sample",
       "source_archive": "https://nogizaka46data.blogspot.com/"
     }
