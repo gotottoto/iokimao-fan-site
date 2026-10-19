@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>乃木坂工事中アーカイブ｜進捗ダッシュボード</title>
+<style>
+:root{color-scheme:light;--ink:#193344;--muted:#637986;--line:#dce8ee;--blue:#078eac;--pale:#eff9fc}
+*{box-sizing:border-box}body{margin:0;background:#f7fbfd;color:var(--ink);font-family:system-ui,-apple-system,"Yu Gothic",Meiryo,sans-serif}
+main{max-width:860px;margin:0 auto;padding:24px 16px 48px}header{margin:8px 0 22px}h1{font-size:clamp(23px,4vw,34px);margin:0 0 8px}p{color:var(--muted);line-height:1.65}
+.panel{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px;margin:14px 0;box-shadow:0 5px 18px #19334408}
+.kpis{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.kpi{background:var(--pale);border-radius:12px;padding:14px}.label{font-size:13px;color:var(--muted)}.value{font-size:clamp(23px,4vw,34px);font-weight:750;margin-top:5px;overflow-wrap:anywhere}
+.track{height:12px;background:#e7eef2;border-radius:20px;overflow:hidden;margin:18px 0 8px}.bar{height:100%;width:0;background:var(--blue);transition:width .3s}
+.meta{display:flex;flex-wrap:wrap;gap:8px 18px;color:var(--muted);font-size:13px}.pill{display:inline-block;border:1px solid var(--line);padding:5px 9px;border-radius:20px;font-size:12px}
+a{color:#007d9c}ul{padding-left:20px;line-height:1.9}.small{font-size:12px}
+@media(max-width:520px){.kpis{grid-template-columns:1fr 1fr}.kpi:last-child{grid-column:span 2}}
+</style>
+</head>
+<body><main>
+<header><div class="pill">LIVE DATA · 30秒ごとに更新</div><h1>乃木坂工事中アーカイブ</h1><p>放送回・YouTubeリンクの収集進捗を表示します。ページを開いている間、GitHub上の一覧を定期的に再読み込みします。</p></header>
+<section class="panel">
+<div class="kpis">
+<div class="kpi"><div class="label">対象放送回</div><div class="value" id="total">—</div></div>
+<div class="kpi"><div class="label">YouTubeリンク登録</div><div class="value" id="filled">—</div></div>
+<div class="kpi"><div class="label">未登録</div><div class="value" id="missing">—</div></div>
+</div>
+<div class="track"><div class="bar" id="bar"></div></div>
+<div class="meta"><span id="percent">登録率 —</span><span id="updated">最終取得 —</span><span id="status">取得中…</span></div>
+</section>
+<section class="panel"><h2>確認ステータス</h2><ul>
+<li>リンク登録済み：YouTube URLが一覧に入っている放送回</li>
+<li>未登録：YouTube URLが空欄の放送回</li>
+<li>この数字は登録状況であり、すべての動画が再生可能かどうかの保証ではありません</li>
+</ul><p class="small">データ元：<a href="https://github.com/gotottoto/iokimao-fan-site/blob/main/data/nogichuu_research.json">GitHubの放送回データ</a> · <a href="https://github.com/gotottoto/iokimao-fan-site/actions">Actionsの実行状況</a></p></section>
+<section class="panel"><h2>直近のGitHub Actions</h2><div id="actions">取得中…</div></section>
+<p class="small">自動更新はこのページを開いている間のみ動作します。GitHub APIやネットワークの制限で取得に失敗する場合があります。</p>
+</main>
+<script>
+const DATA_URL="https://raw.githubusercontent.com/gotottoto/iokimao-fan-site/main/data/nogichuu_research.json";
+const ACTIONS_URL="https://api.github.com/repos/gotottoto/iokimao-fan-site/actions/runs?per_page=5";
+const $=id=>document.getElementById(id);
+async function loadData(){
+ try{
+  const res=await fetch(DATA_URL+"?t="+Date.now(),{cache:"no-store"});if(!res.ok)throw Error("HTTP "+res.status);
+  const data=await res.json();const episodes=data.episodes||[];const total=episodes.length;const filled=episodes.filter(e=>e.youtube_url).length;const missing=total-filled;const pct=total?filled/total*100:0;
+  $("total").textContent=total;$("filled").textContent=filled;$("missing").textContent=missing;$("bar").style.width=pct+"%";$("percent").textContent="登録率 "+pct.toFixed(1)+"%";$("updated").textContent="最終取得 "+new Date().toLocaleTimeString("ja-JP");$("status").textContent="データ更新成功";
+ }catch(e){$("status").textContent="データ取得失敗（再試行します）";}
+}
+async function loadActions(){
+ try{
+  const res=await fetch(ACTIONS_URL,{cache:"no-store"});if(!res.ok)throw Error("HTTP "+res.status);
+  const data=await res.json();const runs=data.workflow_runs||[];
+  const label=r=>r.status!=="completed"?"実行中":r.conclusion==="success"?"成功":r.conclusion==="cancelled"?"キャンセル":r.conclusion==="failure"?"失敗":r.conclusion||"完了";
+  $("actions").innerHTML=runs.length?runs.map(r=>'<p><span class="pill">'+label(r)+'</span> <strong>'+String(r.name).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]))+'</strong><br><span class="small">'+new Date(r.updated_at).toLocaleString("ja-JP")+' · <a href="'+r.html_url+'" target="_blank" rel="noopener">実行詳細</a></span></p>').join(""):"実行履歴なし";
+ }catch(e){$("actions").textContent="Actions状況を取得できません。GitHubで直接確認してください。";}
+}
+async function refresh(){await Promise.all([loadData(),loadActions()]);}
+refresh();setInterval(refresh,30000);
+</script></body></html>
