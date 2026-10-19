@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Daily change monitor for official Mao Ioki information sources.
 
-Safety-first stage: detects source changes and writes a report; it does not
-rewrite the existing hand-curated HTML or publish unverified scraped content.
+This monitor reports source changes. A separate conservative publisher adds
+only dated, categorized records with official individual URLs to data.json.
 """
 from __future__ import annotations
 import hashlib, json, os, re, sys
@@ -63,7 +63,7 @@ def main() -> int:
             results.append((label, url, f"取得失敗: {type(e).__name__}: {e}", "取得できなかったため、サイト内容は変更しません。"))
             if url in previous: current[url] = previous[url]
     STATE_FILE.write_text(json.dumps(current, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    lines=["# 五百城茉央ファンサイト：公式情報チェック", "", f"最終確認: {now}", "", "> この処理は公式ソースの変化を検知するだけです。内容を誤って自動掲載しないよう、HTMLや公開データは自動変更しません。", ""]
+    lines=["# 五百城茉央ファンサイト：公式情報チェック", "", f"最終確認: {now}", "", "> このレポート生成処理自体は変更を検知します。別の公開処理は、日付・カテゴリ・公式個別URLを確認できた項目だけを公開データへ追加します。", ""]
     for label,url,status,preview in results:
         lines += [f"## {label}", f"- URL: {url}", f"- 判定: **{status}**", f"- ページ冒頭の抜粋: {preview[:400]}", ""]
     lines += ["## 次の対応", "変更ありのソースは公式ページで新着記事・放送日・媒体・個別URLを確認してからサイトへ反映してください。取得失敗はリンク切れと断定しないでください。", ""]
