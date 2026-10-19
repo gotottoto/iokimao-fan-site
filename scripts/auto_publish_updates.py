@@ -120,6 +120,29 @@ def category_for(title: str, detail: str, url: str) -> str | None:
         return "テレビ"
     return None
 
+
+def extract_event_date(title: str, detail_text: str) -> str | None:
+    # Prefer event/streaming dates rather than the article publication date.
+    text = title + "\n" + detail_text
+    patterns = (
+        r"(?:日程|開催日|開催日時|ミニライブ配信日時|配信日時|ライブ配信日時|日時)[^\n]{0,40}?(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日",
+        r"(20\d{2})年\s*(\d{1,2})月\s*(\d{1,2})日",
+    )
+    for pattern in patterns:
+        match = re.search(pattern, text)
+        if match:
+            try:
+                return date(int(match.group(1)), int(match.group(2)), int(match.group(3))).isoformat()
+            except ValueError:
+                continue
+    match = re.search(r"(?<!\d)(\d{1,2})月\s*(\d{1,2})日", title)
+    if match:
+        try:
+            return date(datetime.now(timezone.utc).year, int(match.group(1)), int(match.group(2))).isoformat()
+        except ValueError:
+            return None
+    return None
+
 def template_for(title: str, category: str) -> str:
     text = (title or "").lower()
     if any(k in text for k in ("選抜", "センター", "フォーメーション", "卒業", "加入", "受賞")):
@@ -234,6 +257,50 @@ def main() -> int:
             }
     except Exception as exc:
         print(f"Official blog list unavailable: {exc}")
+
+    # Official news includes group-wide live events, runway appearances, and single mini-lives.
+    news_index = BASE + "/s/n46/news/list"
+    event_news_keywords = ("ライブ", "イベント", "ランウェイ", "girlsaward", "tgc", "vmaj", "ミニライブ", "発売記念", "フェス", "ミート＆グリート", "ミート&グリート", "コンサート")
+    try:
+        news_links = links_from(news_index)
+        checked_news = 0
+        for url, link_title in news_links:
+            if "/s/n46/news/detail/" not in url:
+                continue
+            if not any(k in link_title.lower() for k in event_news_keywords):
+                continue
+            key = canonical(url)
+            if key in known or key in candidates:
+                continue
+            if checked_news >= 60:
+                break
+            checked_news += 1
+            try:
+                detail_title, detail_text = detail_for(url)
+            except Exception as exc:
+                print(f"Official news detail unavailable: {url}: {exc}")
+                continue
+            title = detail_title or link_title
+            if not any(name in (title + " " + detail_text) for name in ("五百城", "乃木坂46")):
+                continue
+            category = category_for(title, detail_text, url)
+            if category != "ライブ/イベント":
+                continue
+            event_date = extract_event_date(title, detail_text)
+            if not event_date:
+                print(f"Event date unclear; skipped instead of guessing: {title} | {url}")
+                continue
+            candidates[key] = {
+                "date": event_date, "category": category, "title": title,
+                "detail": "乃木坂46公式ニュースから自動取得。詳細は公式告知をご確認ください。",
+                "url": url, "source_url": url, "status": "official_news_event_auto",
+                "auto_added": True, "template": template_for(title, category),
+                "event_type": "ミニライブ" if "ミニライブ" in title else "ライブ・イベント",
+                "breaking": False, "detected_at": now,
+            }
+            time.sleep(0.1)
+    except Exception as exc:
+        print(f"Official news index unavailable: {exc}")
 
     # Publish only dated, official, relevant records; leave ambiguous items for a later check.
     additions = []
