@@ -196,8 +196,8 @@ def main() -> int:
                 print(f"Schedule detail unavailable: {url}: {exc}")
                 continue
             title = link_title or detail_title
-            if not title or not any(name in (title + " " + detail_text) for name in ("五百城", "乃木坂工事中")):
-                # Keep only entries relevant to Mao or the Nogizaka Kojichuu archive.
+            if not title or not any(name in (title + " " + detail_text) for name in ("五百城", "乃木坂工事中", "乃木坂46")):
+                # Keep only entries relevant to Mao, Nogizaka46 group appearances, or the Kojichuu archive.
                 continue
             category = category_for(title, detail_text, url)
             if not category:
