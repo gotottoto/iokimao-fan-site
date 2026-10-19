@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "tv_episodes.json"
 
 BASE = "https://www.nogizaka46.com"
-SCHEDULE_URL = BASE + "/s/n46/media/list?dy={ym}&ima=0000"
+SCHEDULE_URL = BASE + "/s/n46/media/list?pri1={ym}&ima=0000"
 NEWS_URLS = [
     "https://sp.nogizaka46.com/p/news",
     BASE + "/s/n46/news/list",
