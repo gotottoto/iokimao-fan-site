@@ -34,7 +34,7 @@
       "title_status": "archive_based",
       "link_status": "verified_official_youtube",
       "source_archive": "https://nogizaka46data.blogspot.com/",
-      "official_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202203/21932_202203202400.html",
+      "official_url": "https://www.nogizaka46.com/s/n46/news/detail/65373",
       "youtube_url": "https://youtu.be/LIGB4j8oBfE"
     },
     {
@@ -64,14 +64,16 @@
     {
       "date": "2022-04-10",
       "episode": 355,
-      "title": "#355 29thシングルヒット祈願",
-      "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202204/21932_202204102400.html",
+      "title": "#355 ヒット祈願完結編＆お題スマホ写真展①",
+      "detail": "公式YouTube「乃木坂配信中」で公開確認済み。",
+      "url": "https://youtu.be/p7yoXF9ymS4",
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202204/21932_202204102400.html",
-      "status": "link_check_pending",
+      "status": "youtube_verified",
       "title_status": "archive_based",
-      "link_status": "needs_http_verification",
-      "source_archive": "https://nogizaka46data.blogspot.com/"
+      "link_status": "verified_official_youtube",
+      "source_archive": "https://nogizaka46data.blogspot.com/",
+      "official_url": "https://www.nogizaka46.com/s/n46/news/detail/65433",
+      "youtube_url": "https://youtu.be/p7yoXF9ymS4"
     },
     {
       "date": "2022-04-17",
@@ -120,7 +122,7 @@
       "title_status": "archive_based",
       "link_status": "verified_official_youtube",
       "source_archive": "https://nogizaka46data.blogspot.com/",
-      "official_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202205/21932_202205082400.html",
+      "official_url": "https://www.nogizaka46.com/s/n46/news/detail/65510",
       "youtube_url": "https://youtu.be/yPV2fAYmqyQ"
     },
     {
@@ -2770,14 +2772,12 @@
       "episode": 580,
       "title": "#580 乃木坂46 勝手にオーディション",
       "detail": "公式YouTube「乃木坂配信中」で公開確認済み。",
-      "url": "https://www.youtube.com/watch?v=6irh5cjTy2I",
+      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202609/21932_202609062400.html",
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202609/21932_202609062400.html",
-      "status": "youtube_verified",
+      "status": "link_check_pending",
       "title_status": "archive_based",
-      "link_status": "verified_official_youtube",
-      "source_archive": "https://nogizaka46data.blogspot.com/",
-      "official_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202609/21932_202609062400.html",
-      "youtube_url": "https://www.youtube.com/watch?v=6irh5cjTy2I"
+      "link_status": "needs_http_verification",
+      "source_archive": "https://nogizaka46data.blogspot.com/"
     },
     {
       "date": "2026-09-13",
