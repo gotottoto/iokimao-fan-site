@@ -668,12 +668,42 @@
     "link_status": "個別リンク確認中"
   },
   {
+    "date": "2025-10-18",
+    "category": "ライブ/イベント",
+    "title": "Rakuten GirlsAward 2025 AUTUMN/WINTER — 乃木坂46ライブ出演",
+    "detail": "乃木坂46がアーティストとしてライブ出演。ランウェイのモデル出演者とは分けて掲載。",
+    "url": "https://award-inc.co.jp/news/2575",
+    "source_url": "https://award-inc.co.jp/news/2575",
+    "publisher": "GirlsAward公式",
+    "status": "主催者公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ファッションイベント・ライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
     "date": "2025-09-29",
     "category": "テレビ・声優",
     "title": "TVアニメ「はなかっぱ」コラボ企画",
     "detail": "「らじらー！サンデー」コラボで声優に挑戦",
     "url": "https://prtimes.jp/main/html/rd/p/000000005.000149197.html",
     "status": "プレスリリースで確認"
+  },
+  {
+    "date": "2025-09-24",
+    "category": "ライブ/イベント",
+    "title": "39thシングル発売記念「配信ミニライブ」",
+    "detail": "シングル発売記念の配信ミニライブ。",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/106127?ima=4058",
+    "source_url": "https://www.nogizaka46.com/s/n46/media/detail/106127?ima=4058",
+    "publisher": "乃木坂46公式",
+    "status": "公式スケジュール確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "シングル発売記念ミニライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2025-08-07",
@@ -684,12 +714,42 @@
     "status": "掲載情報あり"
   },
   {
+    "date": "2025-07-05",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 真夏の全国ツアー2025",
+    "detail": "7月5日〜9月7日、北海道・静岡・大阪・宮城・福岡・香川・東京で全18公演。",
+    "url": "https://www.nogizaka46.com/s/n46/live/L202",
+    "source_url": "https://www.nogizaka46.com/s/n46/live/L202",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブページ確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "全国ツアー",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
     "date": "2025-04-20",
     "category": "ラジオ",
     "title": "NHKラジオ第1「らじらー！サンデー」",
     "detail": "五百城茉央担当回。ゲスト：柴田柚菜・賀喜遥香",
     "url": "https://www.nogizaka46.com/s/n46/media/detail/105514",
     "status": "公式スケジュール確認"
+  },
+  {
+    "date": "2025-04-17",
+    "category": "ライブ/イベント",
+    "title": "38thシングル発売記念「配信ミニライブ」",
+    "detail": "シングル発売記念の配信ミニライブ。",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/105294?ima=0302",
+    "source_url": "https://www.nogizaka46.com/s/n46/media/detail/105294?ima=0302",
+    "publisher": "乃木坂46公式",
+    "status": "公式スケジュール確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "シングル発売記念ミニライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2025-04-11",
@@ -734,6 +794,21 @@
     "publisher": "TBS",
     "status": "公式個別放送スケジュール確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2025-01-11",
+    "category": "ライブ/イベント",
+    "title": "37thシングル発売記念「ミニライブ」",
+    "detail": "シングル発売記念ミニライブ。詳細は公式スケジュールで確認できます。",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/104879?ima=2022&pri1=202501&wd00=2025&wd01=01&wd02=11",
+    "source_url": "https://www.nogizaka46.com/s/n46/media/detail/104879?ima=2022&pri1=202501&wd00=2025&wd01=01&wd02=11",
+    "publisher": "乃木坂46公式",
+    "status": "公式スケジュール確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "シングル発売記念ミニライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2024-12-31",
@@ -860,6 +935,21 @@
     "link_status": "個別リンク確認中"
   },
   {
+    "date": "2024-10-07",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 36thSGアンダーライブ",
+    "detail": "2024年10月〜11月、福岡・愛知・大阪・北海道・神奈川を巡るアンダーライブツアー。",
+    "url": "https://sp.nogizaka46.com/p/news/100500",
+    "source_url": "https://sp.nogizaka46.com/p/news/100500",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "アンダーライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
     "date": "2024-09-25",
     "category": "テレビ",
     "title": "朝日放送テレビ「これ余談なんですけど・・・」",
@@ -868,6 +958,21 @@
     "url": "",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2024-07-20",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 真夏の全国ツアー2024",
+    "detail": "7月20日〜9月4日、大阪・愛知・東京のドーム／スタジアム公演。",
+    "url": "https://www.nogizaka46.com/s/n46/live/L193",
+    "source_url": "https://www.nogizaka46.com/s/n46/live/L193",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブページ確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "全国ツアー",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2024-07-12",
@@ -928,12 +1033,42 @@
     "link_status": "個別リンク確認中"
   },
   {
+    "date": "2024-05-03",
+    "category": "ライブ/イベント",
+    "title": "Rakuten GirlsAward 2024 SPRING/SUMMER — 乃木坂46ライブ出演",
+    "detail": "乃木坂46がアーティスト出演。モデルとしてのランウェイ出演とは区別して掲載。",
+    "url": "https://award-inc.co.jp/news/2277",
+    "source_url": "https://award-inc.co.jp/news/2277",
+    "publisher": "GirlsAward公式",
+    "status": "主催者公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ファッションイベント・ライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
     "date": "2024-04-21",
     "category": "ラジオ",
     "title": "NHKラジオ第1「らじらー！サンデー」",
     "detail": "隔週レギュラー開始として記録。初回詳細は追加照合",
     "url": "https://www.nhk.jp/pらじらー/rs/",
     "status": "開始日の再確認が必要"
+  },
+  {
+    "date": "2024-03-07",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 12th YEAR BIRTHDAY LIVE",
+    "detail": "2024年3月7日〜10日、さいたまスーパーアリーナで4日間開催。",
+    "url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "source_url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブ一覧確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "バースデーライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2024-01-27",
@@ -1122,6 +1257,36 @@
     "status": "公式スケジュール確認"
   },
   {
+    "date": "2023-09-30",
+    "category": "ライブ/イベント",
+    "title": "Rakuten GirlsAward 2023 AUTUMN/WINTER — 乃木坂46ライブ出演",
+    "detail": "乃木坂46がアーティストとしてライブ出演。公式発表ではメンバーのモデル出演も案内。",
+    "url": "https://award-inc.co.jp/news/1847",
+    "source_url": "https://award-inc.co.jp/news/1847",
+    "publisher": "GirlsAward公式",
+    "status": "主催者公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "ファッションイベント・ライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
+    "date": "2023-09-29",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 33rdSGアンダーライブ",
+    "detail": "2023年9月29日〜10月1日、横浜アリーナで開催。",
+    "url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "source_url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブ一覧確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "アンダーライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
+  },
+  {
     "date": "2023-09-29",
     "category": "テレビ",
     "title": "テレビ朝日「MUSIC STATION 3時間SP」",
@@ -1224,6 +1389,21 @@
     "url": "",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2023-07-01",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 真夏の全国ツアー2023",
+    "detail": "7月1日〜8月28日、北海道・大阪・広島・沖縄・愛知・宮城・東京で全16公演。",
+    "url": "https://www.nogizaka46.com/s/n46/live/L186",
+    "source_url": "https://www.nogizaka46.com/s/n46/live/L186",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブページ確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "全国ツアー",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2023-06-28",
@@ -1332,6 +1512,21 @@
     "url": "",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2023-02-22",
+    "category": "ライブ/イベント",
+    "title": "乃木坂46 11th YEAR BIRTHDAY LIVE",
+    "detail": "2023年2月22日〜26日、横浜アリーナで期別ライブと秋元真夏卒業コンサートを開催。",
+    "url": "https://www.nogizaka46.com/s/n46/live/L182",
+    "source_url": "https://www.nogizaka46.com/s/n46/live/L182",
+    "publisher": "乃木坂46公式",
+    "status": "公式ライブページ確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "バースデーライブ",
+    "breaking": false,
+    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2023-02-19",
