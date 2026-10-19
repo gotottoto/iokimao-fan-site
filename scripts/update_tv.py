@@ -13,7 +13,7 @@ from urllib.request import Request, urlopen
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "tv_episodes.json"
-NEWS_URL = "https://www.nogizaka46.com/s/n46/news/list"
+NEWS_URL = "https://sp.nogizaka46.com/p/news"
 BASE = "https://www.nogizaka46.com"
 
 
