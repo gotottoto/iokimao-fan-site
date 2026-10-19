@@ -106,6 +106,9 @@ def extract_date(url: str, text: str) -> str | None:
 def category_for(title: str, detail: str, url: str) -> str | None:
     # Classify from event title and URL; include group-wide live appearances and runway events.
     text = (title + " " + url).lower()
+    # TV programs stay in the TV archive, even when their titles contain “live”.
+    if any(k in text for k in ("mステ", "ミュージックステーション", "cdtv", "乃木坂工事中", "music station", "テレビ東京", "フジテレビ", "テレビ朝日", "nhk総合")):
+        return "テレビ"
     if "/diary/detail/" in url:
         return "ブログ"
     if any(k in text for k in ("雑誌", "グラビア", "巻頭", "掲載誌", "ムック", "写真集", "書籍", "単行本", "brody", "ex大衆", "アップトゥボーイ", "b.l.t.", "blt", "classy.", "週刊少年", "ヤングジャンプ")):
