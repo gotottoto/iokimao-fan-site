@@ -17,7 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "data" / "tv_episodes.json"
 
 BASE = "https://www.nogizaka46.com"
-SCHEDULE_URL = BASE + "/s/n46/media/list?ima=0000&pri1={ym}&wd00={year}&wd01={month}&wd02=01"
+SCHEDULE_URL = BASE + "/s/n46/media/list?ima=0000&pri1={ym}"
 NEWS_URLS = [
     "https://sp.nogizaka46.com/p/news",
     BASE + "/s/n46/news/list",
@@ -138,7 +138,7 @@ def main():
 
     # Collect historical and current official schedule entries.
     for ym in month_range(MAX_MONTHS):
-        url = SCHEDULE_URL.format(ym=ym, year=ym[:4], month=ym[4:6])
+        url = SCHEDULE_URL.format(ym=ym)
 
         try:
             page = fetch(url)
