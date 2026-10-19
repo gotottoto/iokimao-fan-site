@@ -132,7 +132,6 @@ def main() -> int:
             ),
             "url": url,
             "source_url": url,
-            "appearance": "要確認",
             "status": "needs_review",
             "detected_at": now,
         })
