@@ -42,6 +42,32 @@ jobs:
         run: python scripts/update_instagram.py
       - name: Generate X draft for new breaking news (free, no API)
         run: python scripts/create_x_drafts.py
+      - name: Summarize update and X draft status
+        if: always()
+        env:
+          JOB_STATUS: ${{ job.status }}
+        run: |
+          {
+            echo "## 五百城茉央 公式情報チェック結果"
+            echo ""
+            if [ "$JOB_STATUS" != "success" ]; then
+              echo "- **チェック結果：失敗またはキャンセル**"
+              echo "- 詳細は上の各ステップのログを確認してください。"
+            elif git diff --quiet -- x-drafts.md; then
+              echo "- **X投稿用の新しい下書き：なし**"
+              echo "- 今回は新しい速報として下書きに追加された情報はありません。"
+            else
+              echo "- **X投稿用の新しい下書き：あり**"
+              echo "- [X投稿文を開く](https://github.com/${{ github.repository }}/blob/main/x-drafts.md)"
+              echo ""
+              echo '```text'
+              git diff --unified=0 -- x-drafts.md | grep '^+' | grep -v '^+++' | head -n 18 | sed 's/^+//' 
+              echo '```'
+            fi
+            echo ""
+            echo "- [速報データ](https://github.com/${{ github.repository }}/blob/main/data.json)"
+            echo "- [監視レポート](https://github.com/${{ github.repository }}/blob/main/monitor-report.md)"
+          } >> "$GITHUB_STEP_SUMMARY"
       - name: Verify Nogizaka Koujichuu archive links (manual runs only)
         if: github.event_name == 'workflow_dispatch'
         run: python scripts/verify_nogichuu_links.py
