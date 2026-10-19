@@ -48,6 +48,21 @@ header nav a{box-sizing:border-box;display:inline-flex;align-items:center;justif
 header nav a:hover,header nav a:focus-visible{border-bottom:2px solid transparent;transform:none}
 header nav a.active{border-bottom:2px solid var(--cyan,#08b6cd);font-weight:400}
 header nav a.active:hover{border-bottom-color:var(--cyan,#08b6cd)}
+
+/* Auto-updated breaking news cards */
+.breaking-news{padding:26px 0 30px;border-bottom:1px solid var(--line)}
+.breaking-head{display:flex;align-items:center;gap:10px;margin-bottom:13px}
+.breaking-head h2{font-size:18px;font-weight:500;letter-spacing:.13em;margin:0}
+.breaking-badge{display:inline-block;background:linear-gradient(100deg,#138fce,#12b6c7);color:#fff;border-radius:999px;padding:4px 9px;font:10px Arial,sans-serif;letter-spacing:.08em}
+.breaking-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.breaking-card{display:block;border:1px solid var(--line);border-radius:12px;padding:14px;background:linear-gradient(145deg,#fff,#f4fbff);min-width:0}
+.breaking-card:hover{border-color:var(--cyan);box-shadow:0 5px 18px #168fd01a}
+.breaking-meta{display:flex;justify-content:space-between;gap:8px;font:10px Arial,sans-serif;color:var(--blue)}
+.breaking-card strong{display:block;font-size:13px;font-weight:500;line-height:1.65;margin:8px 0}
+.breaking-card p{font-size:11px;color:var(--muted);line-height:1.7;margin:0}
+.breaking-empty{font-size:12px;color:var(--muted);line-height:1.8}
+@media(max-width:1000px){.breaking-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){.breaking-grid{grid-template-columns:1fr}}
 </style><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
@@ -70,6 +85,11 @@ body,body *:not(svg):not(path){font-family:"Zen Maru Gothic","Hiragino Maru Goth
 <a class="mini-item" href="https://www.nhk.jp/p/radirer/rs/88W859PYQ9/" target="_blank" rel="noopener"><time>2026-10-11 · ラジオ</time><strong>NHK AM「らじらー！サンデー」</strong><span>五百城茉央担当回。ゲスト：奥田いろは・中西アルノ</span></a>
 <a class="mini-item" href="https://www.nogizaka46.com/s/n46/media/detail/107545" target="_blank" rel="noopener"><time>2026-10-06 · テレビ</time><strong>MBS「よんチャンTV」</strong><span>五百城茉央・弓木奈於／VTR出演（15:40頃）</span></a>
 </div><a class="mini-more" href="schedule.html">すべてのスケジュールを見る →</a><div class="note">レギュラー番組：<a href="https://sp.nogizaka46.com/p/news/102239" target="_blank" rel="noopener">乃木坂工事中</a>（日曜深夜・放送時間は編成により変動）</div></aside>
+</section>
+<section class="breaking-news" id="breaking-news" aria-labelledby="breaking-title">
+<div class="breaking-head"><span class="breaking-badge">速報</span><h2 id="breaking-title">NEW INFORMATION</h2></div>
+<p class="breaking-empty" id="breaking-empty">公式情報を確認しています。</p>
+<div class="breaking-grid" id="breaking-items"></div>
 </section>
 <section class="profile-facts"><div class="fact"><small>JOINED</small><strong>2022年2月加入</strong></div><div class="fact"><small>GROUP</small><strong>乃木坂46・5期生</strong></div><div class="fact"><small>NAME</small><strong>五百城 茉央（いおき まお）</strong></div><div class="fact"><small>CYALUME COLOR</small><strong>サイリウムカラー</strong><div class="swatches" style="margin-top:8px"><i class="swatch" style="background:#40c9c8"></i><i class="swatch" style="background:#2585df"></i><span style="font-size:12px">ターコイズ × 青</span></div></div></section>
 <section class="page-links"><h2>CONTENTS <span style="color:var(--cyan)">•</span></h2><p>知りたい情報のページを選んでね。</p><div class="grid">
@@ -103,6 +123,21 @@ body,body *:not(svg):not(path){font-family:"Zen Maru Gothic","Hiragino Maru Goth
  window.addEventListener('scroll',update,{passive:true});
  btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
  update();
+})();
+</script>
+
+<script>
+(function(){
+ const root=document.getElementById("breaking-items");
+ const empty=document.getElementById("breaking-empty");
+ if(!root||!empty)return;
+ const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ fetch("data.json").then(r=>{if(!r.ok)throw new Error("data.json unavailable");return r.json()}).then(items=>{
+  const rows=(Array.isArray(items)?items:[]).filter(e=>e&&e.auto_added===true&&e.url&&e.title).sort((a,b)=>(b.detected_at||"").localeCompare(a.detected_at||"")||(b.date||"").localeCompare(a.date||"")).slice(0,5);
+  if(!rows.length){empty.textContent="新しい公式情報が見つかると、ここに自動で追加されます。";return;}
+  empty.hidden=true;
+  root.innerHTML=rows.map(e=>'<a class="breaking-card" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer"><div class="breaking-meta"><span>'+esc(e.date||"日付確認中")+'</span><span>'+esc(e.category||"公式情報")+'</span></div><strong>'+esc(e.title)+'</strong><p>'+esc(e.detail||"公式ページで詳細を確認できます。")+'</p></a>').join("");
+ }).catch(()=>{empty.textContent="速報を読み込めませんでした。時間をおいて再度ご確認ください。"});
 })();
 </script>
 </body></html>
