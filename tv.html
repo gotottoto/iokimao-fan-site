@@ -49,7 +49,19 @@ fetch("./data/tv_episodes.json")
   .then(episodes => {
     if (!Array.isArray(episodes)) return;
     episodes.forEach(item => {
-      if (!item?.url || DATA.some(e => e.url === item.url)) return;
+      if (!item?.url) return;
+
+      const existing = DATA.find(e => e.url === item.url);
+
+      if (existing) {
+        existing.date = item.date || existing.date || "";
+        existing.title = item.title || existing.title;
+        existing.detail = item.detail || existing.detail;
+        existing.category = item.category || existing.category || "レギュラー";
+        existing.status = item.status || existing.status;
+        existing.publisher = item.publisher || existing.publisher || "テレビ東京系";
+        return;
+      }
       DATA.push({
         date: item.date || "",
         category: item.category || "レギュラー",
