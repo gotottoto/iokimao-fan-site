@@ -57,6 +57,12 @@ header nav a.active:hover{border-bottom-color:var(--cyan,#08b6cd)}
 .breaking-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .breaking-card{display:block;border:1px solid var(--line);border-radius:12px;padding:14px;background:linear-gradient(145deg,#fff,#f4fbff);min-width:0}
 .breaking-card:hover{border-color:var(--cyan);box-shadow:0 5px 18px #168fd01a}
+.breaking-card--selection{border-color:#a8dce9;background:linear-gradient(135deg,#f0fbff 0%,#fff 58%,#f3f0ff 100%);box-shadow:inset 0 0 0 1px #d7f1f7}
+.breaking-card--selection .breaking-meta span:last-child{background:#e2f6fb;color:#087f98;border-radius:999px;padding:3px 8px;font-weight:700}
+.breaking-card--magazine{background:linear-gradient(145deg,#fff8f1,#fff)}
+.breaking-card--media{background:linear-gradient(145deg,#f1f8ff,#fff)}
+.breaking-card--blog{background:linear-gradient(145deg,#f4fff9,#fff)}
+.breaking-card--event{background:linear-gradient(145deg,#f7f3ff,#fff)}
 .breaking-meta{display:flex;justify-content:space-between;gap:8px;font:10px Arial,sans-serif;color:var(--blue)}
 .breaking-card strong{display:block;font-size:13px;font-weight:500;line-height:1.65;margin:8px 0}
 .breaking-card p{font-size:11px;color:var(--muted);line-height:1.7;margin:0}
@@ -136,7 +142,11 @@ body,body *:not(svg):not(path){font-family:"Zen Maru Gothic","Hiragino Maru Goth
   const rows=(Array.isArray(items)?items:[]).filter(e=>e&&e.auto_added===true&&e.url&&e.title).sort((a,b)=>(b.detected_at||"").localeCompare(a.detected_at||"")||(b.date||"").localeCompare(a.date||"")).slice(0,5);
   if(!rows.length){empty.textContent="新しい公式情報が見つかると、ここに自動で追加されます。";return;}
   empty.hidden=true;
-  root.innerHTML=rows.map(e=>'<a class="breaking-card" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer"><div class="breaking-meta"><span>'+esc(e.date||"日付確認中")+'</span><span>'+esc(e.category||"公式情報")+'</span></div><strong>'+esc(e.title)+'</strong><p>'+esc(e.detail||"公式ページで詳細を確認できます。")+'</p></a>').join("");
+  root.innerHTML=rows.map(e=>{
+   const category=e.category||"公式情報";
+   const type=e.template||(category.includes("雑誌")?"magazine":category.includes("ブログ")?"blog":category.includes("選抜")||category.includes("イベント")?"selection":/(テレビ|ラジオ|WEB|配信)/.test(category)?"media":"event");
+   return '<a class="breaking-card breaking-card--'+esc(type)+'" href="'+esc(e.url)+'" target="_blank" rel="noopener noreferrer"><div class="breaking-meta"><span>'+esc(e.date||"日付確認中")+'</span><span>'+esc(category)+'</span></div><strong>'+esc(e.title)+'</strong><p>'+esc(e.detail||"公式ページで詳細を確認できます。")+'</p></a>';
+  }).join("");
  }).catch(()=>{empty.textContent="速報を読み込めませんでした。時間をおいて再度ご確認ください。"});
 })();
 </script>
