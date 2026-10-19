@@ -147,24 +147,30 @@ def main():
 
         
        
-        # Collect every official media-detail link first. The listing card title
-        # may be rendered outside the anchor, so do not filter by its text here.
+        # Parse anchors with HTMLParser rather than a regex. Official pages can
+        # contain nested markup and attributes that make a simple regex brittle.
+        parser = LinkParser()
+        parser.feed(page)
         links = []
-        pattern = re.compile(
-            r'<a\b[^>]*href=["\']([^"\']*/s/n46/media/detail/[^"\']*)["\'][^>]*>(.*?)</a>',
-            re.I | re.S,
-        )
-        for raw_link, raw_title in pattern.findall(page):
-            title = re.sub(r"<[^>]+>", " ", raw_title)
-            title = re.sub(r"\s+", " ", title).strip()
-            link = stable_url(urljoin(BASE, raw_link))
-            if link not in {item[0] for item in links}:
-                links.append((link, title))
+        seen_page_urls = set()
+        for raw_link, title in parser.links:
+            if "/s/n46/media/detail/" not in raw_link:
+                continue
+            link = stable_url(raw_link)
+            if link in seen_page_urls:
+                continue
+            seen_page_urls.add(link)
+            links.append((link, title))
 
+        # Keep a small diagnostic so a successful HTTP response with an empty
+        # result is distinguishable from a network failure.
+        if not links:
+            print(f"Schedule {ym}: no media detail anchors parsed; HTML length={len(page)}")
+            print("HTML preview:", re.sub(r"\\s+", " ", page[:300])[:300])
+        else:
+            print(f"Schedule {ym}: {len(links)} official media links")
+            print("Link samples:", links[:5])
         schedule_links_found += len(links)
-        print(f"Schedule {ym}: {len(links)} official media links")
-        print("Link samples:", links[:5])
-
 
         for link, title in links:
             link = stable_url(link)
