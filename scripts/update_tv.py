@@ -147,6 +147,7 @@ def main():
 
         parser = LinkParser()
         parser.feed(page)
+        
         print(f"HTML length: {len(page)}")
         print(f"All links found: {len(parser.links)}")
         print("Link samples:", parser.links[:5])
