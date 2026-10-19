@@ -2820,13 +2820,13 @@
     {
       "date": "2026-10-11",
       "episode": 585,
-      "title": "#585 乃木坂46 いい旅選手権2026",
+      "title": "#585 さくちゃん捜査会議",
       "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.nogizaka46.com/s/n46/media/detail/107580?ima=4033",
-      "source_url": "https://www.nogizaka46.com/s/n46/media/detail/107580?ima=4033",
+      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202610/21932_202610112455.html",
+      "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202610/21932_202610112455.html",
       "status": "link_check_pending",
-      "title_status": "archive_based_preview",
-      "link_status": "verified_sample",
+      "title_status": "verified_official_broadcaster",
+      "link_status": "verified_official_broadcaster",
       "source_archive": "https://nogizaka46data.blogspot.com/"
     },
     {
@@ -2834,11 +2834,11 @@
       "episode": 586,
       "title": "#586 乃木坂46 いい旅選手権2026",
       "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.nogizaka46.com/s/n46/media/detail/107579?ima=3735",
-      "source_url": "https://www.nogizaka46.com/s/n46/media/detail/107579?ima=3735",
+      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202610/21932_202610182415.html",
+      "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202610/21932_202610182415.html",
       "status": "link_check_pending",
-      "title_status": "archive_based_preview",
-      "link_status": "verified_sample",
+      "title_status": "verified_official_broadcaster",
+      "link_status": "verified_official_broadcaster",
       "source_archive": "https://nogizaka46data.blogspot.com/"
     }
   ]
