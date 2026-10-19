@@ -146,24 +146,26 @@ def main():
             continue
 
         
-       links = []
+       
+        links = []
 
-       pattern = re.compile(
-           r'<a\b[^>]*href=["\']([^"\']*/s/n46/media/detail/[^"\']*)["\'][^>]*>(.*?)</a>',
-           re.I | re.S,
-       )
+        pattern = re.compile(
+            r'<a\b[^>]*href=["\']([^"\']*/s/n46/media/detail/[^"\']*)["\'][^>]*>(.*?)</a>',
+            re.I | re.S,
+        )
 
-       for raw_link, raw_title in pattern.findall(page):
-           title = re.sub(r"<[^>]+>", " ", raw_title)
-           title = re.sub(r"\s+", " ", title).strip()
-           link = stable_url(urljoin(BASE, raw_link))
+        for raw_link, raw_title in pattern.findall(page):
+            title = re.sub(r"<[^>]+>", " ", raw_title)
+            title = re.sub(r"\s+", " ", title).strip()
+            link = stable_url(urljoin(BASE, raw_link))
 
-           if "乃木坂工事中" in title:
-               links.append((link, title))
+            if "乃木坂工事中" in title:
+                links.append((link, title))
 
-       schedule_links_found += len(links)
-       print(f"Schedule {ym}: {len(links)} matching links")
-       print("Link samples:", links[:5])
+        schedule_links_found += len(links)
+        print(f"Schedule {ym}: {len(links)} matching links")
+        print("Link samples:", links[:5])
+
 
         for link, title in links:
             link = stable_url(link)
