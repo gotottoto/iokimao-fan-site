@@ -12,26 +12,30 @@
     {
       "date": "2022-03-13",
       "episode": 351,
-      "title": "#351 5期生 PR大作戦",
-      "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.nogizaka46.com/s/n46/news/detail/65348",
+      "title": "#351 5期生 PR大作戦①",
+      "detail": "公式YouTube「乃木坂配信中」で公開確認済み。",
+      "url": "https://youtu.be/noHfpNkzyDA",
       "source_url": "https://www.nogizaka46.com/s/n46/news/detail/65348",
-      "status": "link_check_pending",
+      "status": "youtube_verified",
       "title_status": "archive_based",
-      "link_status": "verified_official_announcement",
-      "source_archive": "https://nogizaka46data.blogspot.com/"
+      "link_status": "verified_official_youtube",
+      "source_archive": "https://nogizaka46data.blogspot.com/",
+      "official_url": "https://www.nogizaka46.com/s/n46/news/detail/65348",
+      "youtube_url": "https://youtu.be/noHfpNkzyDA"
     },
     {
       "date": "2022-03-20",
       "episode": 352,
-      "title": "#352 5期生 PR大作戦",
-      "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202203/21932_202203202400.html",
+      "title": "#352 5期生 PR大作戦②",
+      "detail": "公式YouTube「乃木坂配信中」で公開確認済み。",
+      "url": "https://youtu.be/LIGB4j8oBfE",
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202203/21932_202203202400.html",
-      "status": "link_check_pending",
+      "status": "youtube_verified",
       "title_status": "archive_based",
-      "link_status": "verified_official_broadcaster",
-      "source_archive": "https://nogizaka46data.blogspot.com/"
+      "link_status": "verified_official_youtube",
+      "source_archive": "https://nogizaka46data.blogspot.com/",
+      "official_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202203/21932_202203202400.html",
+      "youtube_url": "https://youtu.be/LIGB4j8oBfE"
     },
     {
       "date": "2022-03-27",
@@ -108,14 +112,16 @@
     {
       "date": "2022-05-08",
       "episode": 359,
-      "title": "#359 5期生 PR大作戦（続）",
-      "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202205/21932_202205082400.html",
+      "title": "#359 5期生 PR大作戦③",
+      "detail": "公式YouTube「乃木坂配信中」で公開確認済み。",
+      "url": "https://youtu.be/yPV2fAYmqyQ",
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202205/21932_202205082400.html",
-      "status": "link_check_pending",
+      "status": "youtube_verified",
       "title_status": "archive_based",
-      "link_status": "needs_http_verification",
-      "source_archive": "https://nogizaka46data.blogspot.com/"
+      "link_status": "verified_official_youtube",
+      "source_archive": "https://nogizaka46data.blogspot.com/",
+      "official_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202205/21932_202205082400.html",
+      "youtube_url": "https://youtu.be/yPV2fAYmqyQ"
     },
     {
       "date": "2022-05-15",
@@ -2568,14 +2574,16 @@
     {
       "date": "2026-05-17",
       "episode": 564,
-      "title": "#564 MVここ見て！選手権2026",
-      "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202605/21932_202605172400.html",
+      "title": "#564 MVここ見て！選手権2026 後編",
+      "detail": "公式YouTube「乃木坂配信中」で公開確認済み。",
+      "url": "https://www.youtube.com/watch?v=Nm_W7Ii-eW8",
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202605/21932_202605172400.html",
-      "status": "link_check_pending",
+      "status": "youtube_verified",
       "title_status": "archive_based",
-      "link_status": "needs_http_verification",
-      "source_archive": "https://nogizaka46data.blogspot.com/"
+      "link_status": "verified_official_youtube",
+      "source_archive": "https://nogizaka46data.blogspot.com/",
+      "official_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202605/21932_202605172400.html",
+      "youtube_url": "https://www.youtube.com/watch?v=Nm_W7Ii-eW8"
     },
     {
       "date": "2026-05-24",
@@ -2761,13 +2769,15 @@
       "date": "2026-09-06",
       "episode": 580,
       "title": "#580 乃木坂46 勝手にオーディション",
-      "detail": "放送回・企画名は年別アーカイブを基に整理。各回の公式詳細リンクは順次照合中。",
-      "url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202609/21932_202609062400.html",
+      "detail": "公式YouTube「乃木坂配信中」で公開確認済み。",
+      "url": "https://www.youtube.com/watch?v=6irh5cjTy2I",
       "source_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202609/21932_202609062400.html",
-      "status": "link_check_pending",
+      "status": "youtube_verified",
       "title_status": "archive_based",
-      "link_status": "needs_http_verification",
-      "source_archive": "https://nogizaka46data.blogspot.com/"
+      "link_status": "verified_official_youtube",
+      "source_archive": "https://nogizaka46data.blogspot.com/",
+      "official_url": "https://www.tv-tokyo.co.jp/broad_tvtokyo/program/detail/202609/21932_202609062400.html",
+      "youtube_url": "https://www.youtube.com/watch?v=6irh5cjTy2I"
     },
     {
       "date": "2026-09-13",
