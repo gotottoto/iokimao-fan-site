@@ -255,16 +255,35 @@ def main():
 
         parser = LinkParser()
         parser.feed(page)
-        for link, _title in parser.links:
+        for link, list_title in parser.links:
             path = urlsplit(link).path
             if ("/s/n46/news/detail/" in path or "/p/news/" in path) and link not in seen_news:
                 seen_news.add(link)
-                article_urls.append(link)
+                article_urls.append((link, list_title))
         time.sleep(0.1)
 
     print("Official news article links discovered:", len(article_urls))
-    for link in article_urls:
+    for link, list_title in article_urls:
         if link in known_urls:
+            continue
+        # Use a title already present in the official index when available.
+        if "乃木坂工事中" in list_title and ("次回予告" in list_title or "次回" in list_title):
+            article_id_match = re.search(r"/(?:p/news/|s/n46/news/detail/)(\d+)", urlsplit(link).path)
+            article_id = article_id_match.group(1) if article_id_match else None
+            canonical = f"https://sp.nogizaka46.com/p/news/{article_id}" if article_id else link
+            existing.append({
+                "date": None,
+                "category": "レギュラー",
+                "title": list_title,
+                "detail": "公式の次回予告。放送日が確認できたら更新します。",
+                "url": canonical,
+                "source_url": canonical,
+                "status": "needs_review",
+                "detected_at": now,
+            })
+            known_urls.add(canonical)
+            added_previews += 1
+            print(f"Preview candidate found from index: {list_title} | {canonical}")
             continue
         article_id_match = re.search(r"/(?:p/news/|s/n46/news/detail/)(\d+)", urlsplit(link).path)
         article_id = article_id_match.group(1) if article_id_match else None
