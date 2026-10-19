@@ -266,30 +266,48 @@ def main():
     for link in article_urls:
         if link in known_urls:
             continue
-        try:
-            detail_page = fetch(link)
-        except Exception as exc:
-            print(f"News detail fetch failed: {link}: {exc}")
+        article_id_match = re.search(r"/(?:p/news/|s/n46/news/detail/)(\d+)", urlsplit(link).path)
+        article_id = article_id_match.group(1) if article_id_match else None
+        detail_page = ""
+        fetched_url = link
+        # Legacy /p/news/ links in the archive can return 404 on www. Try
+        # the canonical official detail URL and mobile URL before failing.
+        candidates = [link]
+        if article_id:
+            candidates.extend([
+                f"{BASE}/s/n46/news/detail/{article_id}",
+                f"https://sp.nogizaka46.com/p/news/{article_id}",
+            ])
+        last_error = None
+        for candidate_url in dict.fromkeys(candidates):
+            try:
+                fetched_url, detail_page = fetch(candidate_url)
+                fetched_url = stable_url(fetched_url)
+                break
+            except Exception as exc:
+                last_error = exc
+        if not detail_page:
+            print(f"News detail fetch failed: {link}: {last_error}")
             failed_pages += 1
             continue
 
         title_match = re.search(
-            r"""<meta\\s+property=["']og:title["']\\s+content=["']([^"']+)["']""",
+            r"""<meta\s+property=["']og:title["']\s+content=["']([^"']+)["']""",
             detail_page, re.I
         )
         if not title_match:
             title_match = re.search(
-                r"<title\\b[^>]*>(.*?)</title>", detail_page, re.I | re.S
+                r"<title\b[^>]*>(.*?)</title>", detail_page, re.I | re.S
             )
         title = ""
         if title_match:
             title = re.sub(r"<[^>]+>", " ", title_match.group(1))
-            title = re.sub(r"\\s+", " ", title).strip()
+            title = re.sub(r"\s+", " ", title).strip()
             title = title.replace("｜乃木坂46公式サイト", "").strip()
 
-        plain = re.sub(r"<script\\b[^>]*>.*?</script>|<style\\b[^>]*>.*?</style>", " ", detail_page, flags=re.I | re.S)
+        plain = re.sub(r"<script\b[^>]*>.*?</script>|<style\b[^>]*>.*?</style>", " ", detail_page, flags=re.I | re.S)
         plain = re.sub(r"<[^>]+>", " ", plain)
-        plain = re.sub(r"\\s+", " ", plain)
+        plain = re.sub(r"\s+", " ", plain)
         if "乃木坂工事中" not in (title + " " + plain):
             continue
         if "次回予告" not in title and "次回" not in title:
