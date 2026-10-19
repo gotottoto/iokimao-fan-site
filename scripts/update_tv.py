@@ -266,26 +266,44 @@ def main():
     for link, list_title in article_urls:
         print(f"NEWS INDEX ITEM: title={list_title!r} | url={link}")
     for link, list_title in article_urls:
-        if link in known_urls:
-            continue
-        # Use a title already present in the official index when available.
+        # Recognize preview titles before deduplication. Existing records may
+        # already contain the same article URL but only as an unreviewed stub.
         if "乃木坂工事中" in list_title and ("次回予告" in list_title or "次回" in list_title):
             article_id_match = re.search(r"/(?:p/news/|s/n46/news/detail/)(\d+)", urlsplit(link).path)
             article_id = article_id_match.group(1) if article_id_match else None
             canonical = f"https://sp.nogizaka46.com/p/news/{article_id}" if article_id else link
-            existing.append({
-                "date": None,
-                "category": "レギュラー",
-                "title": list_title,
-                "detail": "公式の次回予告。放送日が確認できたら更新します。",
-                "url": canonical,
-                "source_url": canonical,
-                "status": "needs_review",
-                "detected_at": now,
-            })
+            record = next((item for item in existing if isinstance(item, dict) and (
+                stable_url(item.get("url", "")) == stable_url(link)
+                or (article_id and re.search(r"/(?:p/news/|s/n46/news/detail/)(\d+)", urlsplit(item.get("url", "")).path)
+                    and re.search(r"/(?:p/news/|s/n46/news/detail/)(\d+)", urlsplit(item.get("url", "")).path).group(1) == article_id)
+            )), None)
+            if record:
+                record.update({
+                    "category": "レギュラー",
+                    "title": list_title,
+                    "detail": "公式ニュース一覧で確認した次回予告。放送日は別途確認が必要です。",
+                    "url": canonical,
+                    "source_url": canonical,
+                    "status": "needs_review",
+                    "last_checked_at": now,
+                })
+                print(f"Existing preview record refreshed: {list_title} | {canonical}")
+            else:
+                existing.append({
+                    "date": None,
+                    "category": "レギュラー",
+                    "title": list_title,
+                    "detail": "公式ニュース一覧で確認した次回予告。放送日は別途確認が必要です。",
+                    "url": canonical,
+                    "source_url": canonical,
+                    "status": "needs_review",
+                    "detected_at": now,
+                })
+                added_previews += 1
+                print(f"Preview candidate found from index: {list_title} | {canonical}")
             known_urls.add(canonical)
-            added_previews += 1
-            print(f"Preview candidate found from index: {list_title} | {canonical}")
+            continue
+        if link in known_urls:
             continue
         article_id_match = re.search(r"/(?:p/news/|s/n46/news/detail/)(\d+)", urlsplit(link).path)
         article_id = article_id_match.group(1) if article_id_match else None
