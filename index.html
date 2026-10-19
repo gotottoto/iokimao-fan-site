@@ -139,8 +139,8 @@ body,body *:not(svg):not(path){font-family:"Zen Maru Gothic","Hiragino Maru Goth
  if(!root||!empty)return;
  const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
  fetch("data.json").then(r=>{if(!r.ok)throw new Error("data.json unavailable");return r.json()}).then(items=>{
-  const rows=(Array.isArray(items)?items:[]).filter(e=>e&&e.auto_added===true&&e.url&&e.title).sort((a,b)=>(b.detected_at||"").localeCompare(a.detected_at||"")||(b.date||"").localeCompare(a.date||"")).slice(0,5);
-  if(!rows.length){empty.textContent="新しい公式情報が見つかると、ここに自動で追加されます。";return;}
+  const rows=(Array.isArray(items)?items:[]).filter(e=>e&&e.breaking===true&&e.url&&e.title).sort((a,b)=>(b.detected_at||"").localeCompare(a.detected_at||"")||(b.date||"").localeCompare(a.date||"")).slice(0,1);
+  if(!rows.length){empty.textContent="次の速報が届くまで、最新の速報をここに掲載します。";return;}
   empty.hidden=true;
   root.innerHTML=rows.map(e=>{
    const category=e.category||"公式情報";
