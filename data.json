@@ -1,19 +1,5 @@
 [
   {
-    "date": "2026-10-19",
-    "category": "ブログ更新",
-    "title": "五百城茉央 公式ブログを更新しました！「どこにいても 君の事ばかり」",
-    "detail": "五百城茉央の乃木坂46公式ブログが更新されました。最新記事を公式ページで読めます。",
-    "url": "https://www.nogizaka46.com/s/n46/diary/detail/104927?cd=MEMBER",
-    "source_url": "https://www.nogizaka46.com/s/n46/diary/detail/104927?cd=MEMBER",
-    "publisher": "乃木坂46公式ブログ",
-    "status": "公式ブログ一覧で確認",
-    "auto_added": true,
-    "template": "blog",
-    "breaking": true,
-    "detected_at": "2026-10-22T03:13:00+09:00"
-  },
-  {
     "date": "2026-11-07",
     "category": "ライブ/イベント",
     "title": "42ndシングル「是非に及ばず」発売記念ミニライブ（メンバー解説付き配信）",
@@ -25,6 +11,19 @@
     "auto_added": true,
     "template": "event",
     "event_type": "ミニライブ"
+  },
+  {
+    "date": "2026-10-31",
+    "category": "ブログ",
+    "title": "かぼちゃプリンとか",
+    "detail": "五百城茉央の乃木坂46公式ブログ。",
+    "url": "https://www.nogizaka46.com/s/n46/diary/detail/104957?ima=0853&cd=MEMBER",
+    "source_url": "https://www.nogizaka46.com/s/n46/diary/MEMBER/list?cd=MEMBER&ct=55396",
+    "status": "official_blog_auto",
+    "auto_added": true,
+    "template": "blog",
+    "breaking": true,
+    "detected_at": "2026-10-31T11:09:41+00:00"
   },
   {
     "date": "2026-10-31",
@@ -76,6 +75,20 @@
     "breaking": true,
     "template": "magazine",
     "detected_at": "2026-10-23T13:16:00+09:00"
+  },
+  {
+    "date": "2026-10-19",
+    "category": "ブログ更新",
+    "title": "五百城茉央 公式ブログを更新しました！「どこにいても 君の事ばかり」",
+    "detail": "五百城茉央の乃木坂46公式ブログが更新されました。最新記事を公式ページで読めます。",
+    "url": "https://www.nogizaka46.com/s/n46/diary/detail/104927?cd=MEMBER",
+    "source_url": "https://www.nogizaka46.com/s/n46/diary/detail/104927?cd=MEMBER",
+    "publisher": "乃木坂46公式ブログ",
+    "status": "公式ブログ一覧で確認",
+    "auto_added": true,
+    "template": "blog",
+    "breaking": true,
+    "detected_at": "2026-10-22T03:13:00+09:00"
   },
   {
     "date": "2026-10-19",
