@@ -862,10 +862,10 @@
     "category": "ラジオ",
     "title": "NHKラジオ第1「らじらー！サンデー」",
     "detail": "担当：五百城茉央　ゲスト：黒見明香・池田瑛紗　20:05～22:55",
-    "url": "https://sp.nogizaka46.com/p/schedules/2025/03/09/105273",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202503",
     "publisher": "NHKラジオ第1",
-    "status": "乃木坂46公式スケジュール照合済み",
-    "link_status": "公式個別スケジュール"
+    "status": "公式月別一覧（個別ページ未確認）",
+    "link_status": "乃木坂46公式月別一覧"
   },
   {
     "date": "2025-02-09",
@@ -1126,6 +1126,26 @@
     "link_status": "個別リンク確認中"
   },
   {
+    "date": "2024-09-08",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」",
+    "detail": "担当：川﨑桜　ゲスト：五百城茉央・井上和　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/104559",
+    "publisher": "NHKラジオ第1",
+    "status": "乃木坂46公式個別スケジュール確認済み",
+    "link_status": "公式個別ページ"
+  },
+  {
+    "date": "2024-08-11",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」",
+    "detail": "担当：五百城茉央　ゲスト：中西アルノ・金川紗耶　20:10～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/104454",
+    "publisher": "NHKラジオ第1",
+    "status": "乃木坂46公式個別スケジュール確認済み",
+    "link_status": "公式個別ページ"
+  },
+  {
     "date": "2024-07-20",
     "category": "ライブ/イベント",
     "title": "乃木坂46 真夏の全国ツアー2024",
@@ -1286,6 +1306,16 @@
     "url": "https://www.nogizaka46.com/s/n46/media/detail/102902?wd00=2024&wd01=01&wd02=19",
     "status": "乃木坂46公式個別スケジュール確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2024-01-07",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデースペシャル～乃木坂46 5期生の夏休み自由研究～」",
+    "detail": "出演：五百城茉央・池田瑛紗・一ノ瀬美空・井上和・小川彩・奥田いろは・川﨑桜・菅原咲月・冨里奈央・中西アルノ　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/103532",
+    "publisher": "NHKラジオ第1",
+    "status": "乃木坂46公式個別スケジュール確認済み",
+    "link_status": "公式個別ページ"
   },
   {
     "date": "2023-12-31",
@@ -1540,6 +1570,15 @@
     "publisher": "MUSIC ON! TV",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2023-09-03",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」特別企画",
+    "detail": "担当：特別企画　出演：五百城茉央ほか5期生　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202309",
+    "status": "出演情報照合済み",
+    "link_status": "公式月別一覧"
   },
   {
     "date": "2023-08-31",
@@ -1823,14 +1862,5 @@
     "publisher": "MUSIC ON! TV",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
-  },
-  {
-    "date": "2023-09-03",
-    "category": "ラジオ",
-    "title": "NHKラジオ第1「らじらー！サンデー」特別企画",
-    "detail": "担当：特別企画　出演：五百城茉央ほか5期生　20:05～22:55",
-    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202309",
-    "status": "出演情報照合済み",
-    "link_status": "公式月別一覧"
   }
 ]
