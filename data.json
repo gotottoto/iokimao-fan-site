@@ -934,10 +934,10 @@
     "date": "2024-12-22",
     "category": "ラジオ",
     "title": "NHKラジオ第1「らじらー！サンデー」",
-    "detail": "担当：五百城茉央　ゲスト：小川彩・賀喜遥香　20:05～22:55",
+    "detail": "担当：五百城茉央　ゲスト：弓木奈於・賀喜遥香　20:05～22:55",
     "url": "https://www.nogizaka46.com/s/n46/media/detail/104941",
-    "status": "公式情報確認済み",
-    "link_status": "乃木坂46公式情報"
+    "status": "乃木坂46公式スケジュール照合済み",
+    "link_status": "公式個別ページ"
   },
   {
     "date": "2024-12-20",
@@ -1188,9 +1188,9 @@
     "category": "ラジオ",
     "title": "NHKラジオ第1「らじらー！サンデー」",
     "detail": "担当：五百城茉央　ゲスト：田村真佑・梅澤美波　20:05～22:55",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/100206?ima=0705&pri1=202404",
-    "status": "公式情報確認済み",
-    "link_status": "乃木坂46公式情報"
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202404",
+    "status": "乃木坂46公式スケジュール照合済み",
+    "link_status": "公式月別スケジュール"
   },
   {
     "date": "2024-03-07",
