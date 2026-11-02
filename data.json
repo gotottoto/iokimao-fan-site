@@ -964,10 +964,10 @@
     "date": "2024-12-22",
     "category": "ラジオ",
     "title": "NHKラジオ第1「らじらー！サンデー」",
-    "detail": "担当：五百城茉央　ゲスト：弓木奈於・賀喜遥香　20:05～22:55",
+    "detail": "担当：五百城茉央　ゲスト：小川彩・賀喜遥香　20:05～22:55",
     "url": "https://www.nogizaka46.com/s/n46/media/detail/104941",
-    "status": "乃木坂46公式スケジュール照合済み",
-    "link_status": "公式個別ページ"
+    "status": "出演内容照合済み",
+    "link_status": "乃木坂46公式個別ページ"
   },
   {
     "date": "2024-12-20",
@@ -1051,6 +1051,16 @@
     "link_status": "個別リンク確認中"
   },
   {
+    "date": "2024-11-24",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」",
+    "publisher": "NHKラジオ第1",
+    "detail": "担当：五百城茉央　ゲスト：小川彩・岡本姫奈　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202411",
+    "status": "出演内容照合済み",
+    "link_status": "乃木坂46公式月別一覧"
+  },
+  {
     "date": "2024-11-23",
     "category": "テレビ",
     "title": "NHK「Venue101」",
@@ -1094,11 +1104,11 @@
     "date": "2024-10-13",
     "category": "ラジオ",
     "title": "NHKラジオ第1「らじらー！サンデー」",
-    "detail": "担当：五百城茉央　ゲスト：筒井あやめ・冨里奈央　20:05～22:55",
+    "detail": "担当：五百城茉央　ゲスト：冨里奈央・筒井あやめ　20:05～22:55",
     "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202410",
     "publisher": "NHKラジオ第1",
-    "status": "乃木坂46公式スケジュール照合済み",
-    "link_status": "公式月別一覧"
+    "status": "出演内容照合済み",
+    "link_status": "乃木坂46公式月別一覧"
   },
   {
     "date": "2024-10-07",
@@ -1126,14 +1136,34 @@
     "link_status": "個別リンク確認中"
   },
   {
+    "date": "2024-09-15",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」",
+    "publisher": "NHKラジオ第1",
+    "detail": "担当：五百城茉央　ゲスト：小川彩・矢久保美緒　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202409",
+    "status": "出演内容照合済み",
+    "link_status": "乃木坂46公式月別一覧"
+  },
+  {
     "date": "2024-09-08",
     "category": "ラジオ",
     "title": "NHKラジオ第1「らじらー！サンデー」",
-    "detail": "担当：五百城茉央・川﨑桜　ゲスト：井上和　20:05～22:55",
+    "detail": "担当：五百城茉央・川﨑桜　ゲスト：井上和　20:05～22:55（5期生の野外活動スペシャル）",
     "url": "https://www.nogizaka46.com/s/n46/media/detail/104559",
     "publisher": "NHKラジオ第1",
-    "status": "乃木坂46公式個別スケジュール確認済み",
+    "status": "出演内容照合済み",
     "link_status": "乃木坂46公式個別ページ"
+  },
+  {
+    "date": "2024-08-25",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」",
+    "publisher": "NHKラジオ第1",
+    "detail": "担当：五百城茉央　ゲスト：岡本姫奈・筒井あやめ　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202408",
+    "status": "出演内容照合済み",
+    "link_status": "乃木坂46公式月別一覧"
   },
   {
     "date": "2024-08-11",
@@ -1161,6 +1191,16 @@
     "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
+    "date": "2024-07-14",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」",
+    "publisher": "NHKラジオ第1",
+    "detail": "担当：五百城茉央　ゲスト：岡本姫奈・池田瑛紗　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202407",
+    "status": "出演内容照合済み",
+    "link_status": "乃木坂46公式月別一覧"
+  },
+  {
     "date": "2024-07-12",
     "category": "テレビ",
     "title": "日本テレビ系「笑ってコラえて！2時間SP」",
@@ -1179,6 +1219,16 @@
     "publisher": "テレビ東京",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2024-06-23",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」",
+    "publisher": "NHKラジオ第1",
+    "detail": "担当：五百城茉央　ゲスト：筒井あやめ・阪口珠美　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202406",
+    "status": "出演内容照合済み",
+    "link_status": "乃木坂46公式月別一覧"
   },
   {
     "date": "2024-06-20",
