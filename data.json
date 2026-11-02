@@ -277,6 +277,16 @@
     "status": "モデルプレス個別記事確認"
   },
   {
+    "date": "2026-09-13",
+    "category": "ラジオ",
+    "title": "NHK AM「らじらー！サンデー」",
+    "detail": "担当：五百城茉央　ゲスト：鈴木佑捺・矢田萌華　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/107355",
+    "publisher": "NHK AM",
+    "status": "乃木坂46公式スケジュール確認済み",
+    "link_status": "公式個別ページ"
+  },
+  {
     "date": "2026-09-12",
     "category": "WEB・ショートドラマ",
     "title": "ショートドラマ「○○ゲーム課」",
@@ -309,6 +319,16 @@
     "template": "blog",
     "breaking": false,
     "detected_at": "2026-10-19T13:22:03+00:00"
+  },
+  {
+    "date": "2026-08-23",
+    "category": "ラジオ",
+    "title": "NHK AM「らじらー！サンデー」",
+    "detail": "担当：五百城茉央・川﨑桜　ゲスト：なし　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/detail/107312",
+    "publisher": "NHK AM",
+    "status": "乃木坂46 Mobile公式スケジュール確認済み",
+    "link_status": "公式個別ページ"
   },
   {
     "date": "2026-08-09",
