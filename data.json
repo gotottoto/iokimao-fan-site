@@ -874,8 +874,8 @@
     "detail": "担当：五百城茉央　ゲスト：吉田綾乃クリスティー・遠藤さくら　20:05～22:55",
     "url": "https://www.nogizaka46.com/s/n46/media/detail/105161",
     "publisher": "NHKラジオ第1",
-    "status": "乃木坂46公式スケジュール照合済み",
-    "link_status": "公式個別スケジュール"
+    "status": "出演情報照合済み",
+    "link_status": "公式個別ページ"
   },
   {
     "date": "2025-01-26",
@@ -1823,5 +1823,14 @@
     "publisher": "MUSIC ON! TV",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2023-09-03",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」特別企画",
+    "detail": "担当：特別企画　出演：五百城茉央ほか5期生　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202309",
+    "status": "出演情報照合済み",
+    "link_status": "公式月別一覧"
   }
 ]
