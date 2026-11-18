@@ -1,14 +1,51 @@
 [
   {
-    "date": "2026-11-07",
-    "category": "関連情報",
-    "title": "乃木坂工事中 関連・公式スケジュール",
-    "detail": "乃木坂46公式スケジュールの個別ページ。番組アーカイブの関連情報として掲載。",
-    "url": "https://www.nogizaka46.com/s/n46/media/detail/107698?ima=1238&pri1=202611&wd00=2026&wd01=11&wd02=07",
-    "source_url": "https://www.nogizaka46.com/s/n46/media/detail/107698?ima=1238&pri1=202611&wd00=2026&wd01=11&wd02=07",
-    "status": "official_schedule_link",
-    "title_status": "official_schedule_reference",
-    "link_status": "official_schedule_link"
+    "date": "2026-11-15",
+    "category": "レギュラー",
+    "episode": 590,
+    "title": "#590 揚げたらうまいもん選手権 前編",
+    "detail": "公式YouTube「乃木坂配信中」の個別動画へ。メンバーおすすめの絶品フライをプレゼン。",
+    "url": "https://youtu.be/xNXtRiTcE7I",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102417",
+    "status": "verified_official_youtube",
+    "title_status": "official_news_verified",
+    "link_status": "verified_official_youtube"
+  },
+  {
+    "date": "2026-11-08",
+    "category": "レギュラー",
+    "episode": 589,
+    "title": "#589 第5回 頭NO王決定戦 後編",
+    "detail": "公式YouTube「乃木坂配信中」の個別動画へ。頭NO王決定戦2026の後半戦。",
+    "url": "https://youtu.be/nBjqib6Lndw",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102393",
+    "status": "verified_official_youtube",
+    "title_status": "official_news_verified",
+    "link_status": "verified_official_youtube"
+  },
+  {
+    "date": "2026-11-01",
+    "category": "レギュラー",
+    "episode": 588,
+    "title": "#588 第5回 頭NO王決定戦 前編",
+    "detail": "公式YouTube「乃木坂配信中」の個別動画へ。2年半ぶりの頭NO王決定戦2026を開催。",
+    "url": "https://youtu.be/B3-b2_m_es4",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102382",
+    "status": "verified_official_youtube",
+    "title_status": "official_news_verified",
+    "link_status": "verified_official_youtube"
+  },
+  {
+    "date": "2026-10-25",
+    "category": "レギュラー",
+    "episode": 587,
+    "title": "#587 乃木坂46 いい旅選手権2026 後編",
+    "detail": "公式YouTube「乃木坂配信中」の個別動画へ。メンバーのリアル夏休みを大公開。",
+    "url": "https://youtu.be/FPvRX9LlQlI",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/102361",
+    "status": "verified_official_youtube",
+    "title_status": "official_news_verified",
+    "link_status": "verified_official_youtube"
   },
   {
     "date": "2026-10-18",
