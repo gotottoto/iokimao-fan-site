@@ -1926,5 +1926,31 @@
     "publisher": "MUSIC ON! TV",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
+  },
+  {
+    "date": "2024-11-23",
+    "category": "ライブ/イベント",
+    "title": "36thシングル「チートデイ」発売記念ミニライブ",
+    "detail": "16:00～。収録曲のパフォーマンスを配信。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/100452",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/100452",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "シングル発売記念ミニライブ"
+  },
+  {
+    "date": "2023-10-18",
+    "category": "ライブ/イベント",
+    "title": "33rdシングル「おひとりさま天国」発売記念ミニライブ",
+    "detail": "20:00～21:00。収録曲のパフォーマンスを生配信。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/66651",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/66651",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "シングル発売記念ミニライブ"
   }
 ]
