@@ -66,46 +66,5 @@ document.querySelector("#q").addEventListener("input",render);document.querySele
  update();
 })();
 </script>
-<script id="site-pagination">
-(function(){
-  const PAGE_SIZE=20;
-  const states=new WeakMap();
-  const style=document.createElement("style");
-  style.textContent=".site-pagination{display:flex;align-items:center;justify-content:center;gap:14px;margin:26px auto 12px;flex-wrap:wrap}.site-pagination button{border:1px solid #b9dfe9;border-radius:999px;background:#fff;color:#168eaa;padding:9px 18px;font:inherit;cursor:pointer;min-width:82px}.site-pagination button:disabled{opacity:.35;cursor:not-allowed}.site-pagination span{font-size:13px;color:var(--muted,#687985);font-variant-numeric:tabular-nums}.site-pagination button:not(:disabled):hover{background:#eaf8fb;border-color:#159fc1}";
-  document.head.appendChild(style);
-  function cardContainer(el){
-    if(el.closest("header,nav,footer,.tools,.pagination")) return false;
-    const children=[...el.children].filter(x=>!x.classList.contains("site-pagination"));
-    if(children.length<=PAGE_SIZE) return false;
-    const cardish=children.filter(x=>/^(LI|A|ARTICLE)$/.test(x.tagName)||/(entry|post|card|item|video|tile|episode|record)/i.test(x.className||""));
-    return cardish.length>=PAGE_SIZE && cardish.length/children.length>=0.8;
-  }
-  function render(el){
-    const items=[...el.children].filter(x=>!x.classList.contains("site-pagination"));
-    let st=states.get(el);
-    if(!st){st={items:[],page:0,nav:null};states.set(el,st);}
-    if(items.length!==st.items.length || items.some((x,i)=>x!==st.items[i])){st.items=items;st.page=0;}
-    const pages=Math.max(1,Math.ceil(items.length/PAGE_SIZE));
-    st.page=Math.min(st.page,pages-1);
-    items.forEach((item,i)=>{item.style.display=(i>=st.page*PAGE_SIZE && i<(st.page+1)*PAGE_SIZE)?"":"none";});
-    if(items.length<=PAGE_SIZE){if(st.nav){st.nav.remove();st.nav=null;}return;}
-    if(!st.nav){
-      st.nav=document.createElement("div");st.nav.className="site-pagination";st.nav.setAttribute("aria-label","ページ切り替え");
-      el.insertAdjacentElement("afterend",st.nav);
-    }
-    st.nav.innerHTML="";
-    const prev=document.createElement("button");prev.type="button";prev.textContent="前へ";prev.disabled=st.page===0;
-    prev.addEventListener("click",()=>{st.page--;render(el);el.scrollIntoView({behavior:"smooth",block:"start"});});
-    const label=document.createElement("span");label.textContent=(st.page+1)+" / "+pages+" ページ（全"+items.length+"件）";
-    const next=document.createElement("button");next.type="button";next.textContent="次へ";next.disabled=st.page>=pages-1;
-    next.addEventListener("click",()=>{st.page++;render(el);el.scrollIntoView({behavior:"smooth",block:"start"});});
-    st.nav.append(prev,label,next);
-  }
-  function scan(){document.querySelectorAll("main *").forEach(el=>{if(cardContainer(el))render(el);});}
-  scan();
-  const observer=new MutationObserver(()=>scan());
-  const main=document.querySelector("main");
-  if(main)observer.observe(main,{childList:true,subtree:true});
-})();
-</script>
+<script id="site-pagination">(function(){const LIMIT=20,states=new WeakMap(),css=document.createElement("style");css.textContent=".site-pagination{display:flex;align-items:center;justify-content:center;gap:14px;margin:26px auto 12px;flex-wrap:wrap}.site-pagination button{border:1px solid #b9dfe9;border-radius:999px;background:#fff;color:#168eaa;padding:9px 18px;font:inherit;cursor:pointer;min-width:82px}.site-pagination button:disabled{opacity:.35;cursor:not-allowed}.site-pagination span{font-size:13px;color:var(--muted,#687985);font-variant-numeric:tabular-nums}.site-pagination button:not(:disabled):hover{background:#eaf8fb;border-color:#159fc1}";document.head.appendChild(css);function eligible(el){if(el.closest("header,nav,footer,.tools,.pagination"))return false;const a=[...el.children].filter(x=>!x.classList.contains("site-pagination"));if(a.length<=LIMIT)return false;const cards=a.filter(x=>/^(LI|A|ARTICLE)$/.test(x.tagName)||/(entry|post|card|item|video|tile|episode|record)/i.test(typeof x.className==="string"?x.className:""));return cards.length>=LIMIT&&cards.length/a.length>=.8;}function draw(el){const items=[...el.children].filter(x=>!x.classList.contains("site-pagination"));let s=states.get(el);if(!s){s={items:[],page:0,nav:null,lastPage:-1,lastPages:-1};states.set(el,s);}if(items.length!==s.items.length||items.some((x,i)=>x!==s.items[i])){s.items=items;s.page=0;s.lastPage=-1;}const pages=Math.max(1,Math.ceil(items.length/LIMIT));s.page=Math.min(s.page,pages-1);items.forEach((x,i)=>{const visible=i>=s.page*LIMIT&&i<(s.page+1)*LIMIT;x.style.display=visible?"":"none";});if(items.length<=LIMIT){if(s.nav){s.nav.remove();s.nav=null;}s.lastPage=-1;s.lastPages=-1;return;}if(!s.nav){const nav=document.createElement("div");nav.className="site-pagination";nav.setAttribute("aria-label","ページ切り替え");const prev=document.createElement("button"),label=document.createElement("span"),next=document.createElement("button");prev.type=next.type="button";prev.textContent="前へ";next.textContent="次へ";prev.addEventListener("click",()=>{s.page=Math.max(0,s.page-1);draw(el);el.scrollIntoView({behavior:"smooth",block:"start"});});next.addEventListener("click",()=>{s.page=Math.min(pages-1,s.page+1);draw(el);el.scrollIntoView({behavior:"smooth",block:"start"});});nav.append(prev,label,next);el.insertAdjacentElement("afterend",nav);s.nav=nav;s.prev=prev;s.label=label;s.next=next;}if(s.lastPage!==s.page||s.lastPages!==pages){s.prev.disabled=s.page===0;s.next.disabled=s.page>=pages-1;s.label.textContent=(s.page+1)+" / "+pages+" ページ（全"+items.length+"件）";s.lastPage=s.page;s.lastPages=pages;}}function scan(){document.querySelectorAll("main *").forEach(el=>{if(eligible(el))draw(el);});}scan();const main=document.querySelector("main");if(main)new MutationObserver(scan).observe(main,{childList:true,subtree:true});})();</script>
 </body></html>
