@@ -1125,21 +1125,6 @@
     "link_status": "乃木坂46公式月別一覧"
   },
   {
-    "date": "2024-10-07",
-    "category": "ライブ/イベント",
-    "title": "乃木坂46 36thSGアンダーライブ",
-    "detail": "2024年10月〜11月、福岡・愛知・大阪・北海道・神奈川を巡るアンダーライブツアー。",
-    "url": "https://sp.nogizaka46.com/p/news/100500",
-    "source_url": "https://sp.nogizaka46.com/p/news/100500",
-    "publisher": "乃木坂46公式",
-    "status": "公式告知確認済み",
-    "auto_added": true,
-    "template": "event",
-    "event_type": "アンダーライブ",
-    "breaking": false,
-    "detected_at": "2026-10-19T21:00:00+09:00"
-  },
-  {
     "date": "2024-09-25",
     "category": "テレビ",
     "title": "朝日放送テレビ「これ余談なんですけど・・・」",
@@ -1271,21 +1256,6 @@
     "publisher": "テレビ朝日",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
-  },
-  {
-    "date": "2024-06-07",
-    "category": "ライブ/イベント",
-    "title": "乃木坂46 35thSGアンダーライブ",
-    "detail": "2024年6月7日〜9日、有明アリーナで開催。",
-    "url": "https://www.nogizaka46.com/s/n46/live/L192",
-    "source_url": "https://www.nogizaka46.com/s/n46/live/L192",
-    "publisher": "乃木坂46公式",
-    "status": "公式ライブページ確認済み",
-    "auto_added": true,
-    "template": "event",
-    "event_type": "アンダーライブ",
-    "breaking": false,
-    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2024-05-26",
@@ -1564,21 +1534,6 @@
   },
   {
     "date": "2023-09-29",
-    "category": "ライブ/イベント",
-    "title": "乃木坂46 33rdSGアンダーライブ",
-    "detail": "2023年9月29日〜10月1日、横浜アリーナで開催。",
-    "url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
-    "source_url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
-    "publisher": "乃木坂46公式",
-    "status": "公式ライブ一覧確認済み",
-    "auto_added": true,
-    "template": "event",
-    "event_type": "アンダーライブ",
-    "breaking": false,
-    "detected_at": "2026-10-19T21:00:00+09:00"
-  },
-  {
-    "date": "2023-09-29",
     "category": "テレビ",
     "title": "テレビ朝日「MUSIC STATION 3時間SP」",
     "detail": "出演。",
@@ -1764,21 +1719,6 @@
     "url": "",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
-  },
-  {
-    "date": "2023-04-05",
-    "category": "ライブ/イベント",
-    "title": "乃木坂46 32ndSGアンダーライブ",
-    "detail": "2023年4月5日〜27日、東京・大阪・愛知などで開催。",
-    "url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
-    "source_url": "https://www.nogizaka46.com/s/n46/live?ima=0007&page=3",
-    "publisher": "乃木坂46公式",
-    "status": "公式ライブ一覧確認済み",
-    "auto_added": true,
-    "template": "event",
-    "event_type": "アンダーライブ",
-    "breaking": false,
-    "detected_at": "2026-10-19T21:00:00+09:00"
   },
   {
     "date": "2023-04-04",
