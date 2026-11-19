@@ -53,7 +53,7 @@ fetch("data.json").then(r=>{if(!r.ok)throw new Error("data.json unavailable");re
  const key=e=>{const u=String(e.url||"").split("?")[0];return (u.endsWith("/")?u.slice(0,-1):u)||[e.date||"",e.title||""].join("|")};
  const seen=new Set(DATA.map(key));
  let added=0;
- for(const e of extra){const k=key(e);if(!k||seen.has(k))continue;DATA.push(e);seen.add(k);added++;}
+ for(const e of extra){const k=key(e);if(!k||seen.has(k))continue;const clean={...e};if(["web","WEB・記事","WEB・インタビュー"].includes(clean.category))clean.category="WEB";if(clean.category==="WEB・配信")clean.category="配信";if(clean.category==="WEB・ショートドラマ")clean.category="ショートドラマ";if(clean.category==="WEB・ドラマ")clean.category="ドラマ";DATA.push(clean);seen.add(k);added++;}
  if(added)render();
 }).catch(()=>{});
 </script><button id="back-to-top" type="button" aria-label="ページの一番上に戻る" title="一番上に戻る">↑</button>
