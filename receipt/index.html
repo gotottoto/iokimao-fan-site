@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#f7f8fa"><title>領収書発行</title>
+<style>
+:root{font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif;color:#20242a;background:#f5f6f8}
+*{box-sizing:border-box}body{margin:0;padding:18px 14px 40px}.app{max-width:760px;margin:auto}
+header{display:flex;justify-content:space-between;align-items:center;margin:4px 0 18px;gap:10px}h1{font-size:22px;margin:0}h2{font-size:16px;margin:0 0 14px}
+.card{background:#fff;border:1px solid #e4e7eb;border-radius:15px;padding:17px;margin:12px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.full{grid-column:1/-1}
+label{display:block;font-size:13px;color:#59616b;margin-bottom:6px}
+input,select,textarea{width:100%;font:inherit;font-size:16px;padding:12px;border:1px solid #ccd2da;border-radius:9px;background:#fff;color:#20242a;min-height:46px}
+textarea{min-height:74px}button{font:inherit;font-size:15px;font-weight:650;border:0;border-radius:10px;padding:12px 15px;background:#20252d;color:#fff;min-height:44px;cursor:pointer}
+button.secondary{background:#edf0f3;color:#222}button.light{background:#fff0f0;color:#a33}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}.hint{font-size:12px;color:#737b85;line-height:1.6}.status{font-size:12px;color:#267449;margin-left:6px}
+#otherWrap{display:none}.seal{width:70px;height:70px;border:2px solid #c33;color:#c33;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;white-space:pre-line;font-weight:700;font-size:16px;overflow:hidden}
+.seal img{width:100%;height:100%;object-fit:contain}
+.history{border-top:1px solid #edf0f2;padding:12px 0;display:flex;justify-content:space-between;align-items:center;gap:10px}
+.history:first-child{border-top:0}.history small{display:block;color:#707782;margin-top:4px}.history .actions{margin:0}
+#receipt{display:none;background:#fff;color:#111}
+.receipt-paper{width:180mm;min-height:90mm;padding:8mm 11mm;margin:0 auto;background:#fff}
+.rt{text-align:center;font-size:24px;letter-spacing:.5em;margin:0 0 5mm}.rdate{text-align:right;font-size:11px;margin-bottom:3mm}
+.rname{font-size:17px;border-bottom:1px solid #333;padding-bottom:3mm;margin-bottom:4mm}
+.ramount{text-align:center;font-size:24px;border-top:1px solid #333;border-bottom:1px solid #333;padding:3mm;margin:3mm 0}
+.rsmall{font-size:11px;line-height:1.7}.rfoot{display:flex;justify-content:space-between;align-items:flex-end;margin-top:5mm;font-size:11px}.rseal{width:19mm;height:19mm;border:1.5px solid #c33;border-radius:50%;color:#c33;display:flex;align-items:center;justify-content:center;text-align:center;white-space:pre-line;font-weight:bold;overflow:hidden}.rseal img{width:100%;height:100%;object-fit:contain}
+#printBar{display:none;max-width:760px;margin:14px auto}
+@media(max-width:560px){body{padding:13px 10px 30px}.grid{grid-template-columns:1fr}.full{grid-column:auto}.card{padding:14px}header{align-items:flex-start;flex-direction:column}}
+@media print{
+ @page{size:180mm 90mm;margin:0}
+ html,body{margin:0!important;padding:0!important;background:#fff!important}
+ body *{visibility:hidden!important}
+ #receipt,#receipt *{visibility:visible!important}
+ #receipt{display:block!important;position:absolute;left:0;top:0;width:180mm;height:90mm}
+ .receipt-paper{margin:0;width:180mm;height:90mm;min-height:90mm;overflow:hidden}
+}
+</style></head>
+<body>
+<div class="app" id="app">
+<header><h1>領収書発行</h1><span class="hint">個人利用向け</span></header>
+<section class="card">
+<h2>発行者情報（初回のみ登録）</h2>
+<div class="grid">
+<div><label for="issuer">発行者名 *</label><input id="issuer" autocomplete="name" placeholder="例：山田 太郎"></div>
+<div><label for="phone">電話番号（任意）</label><input id="phone" type="tel" placeholder="例：090-1234-5678"></div>
+<div class="full"><label for="address">住所（任意）</label><input id="address" autocomplete="street-address" placeholder="住所"></div>
+<div><label for="sealName">電子印に入れる苗字</label><input id="sealName" placeholder="例：山田"></div>
+<div><label for="sealFile">電子印画像（任意）</label><input id="sealFile" type="file" accept="image/*"></div>
+<div class="full" style="display:flex;align-items:center;gap:13px"><div class="seal" id="sealPreview">印</div><span class="hint">画像を登録しない場合は、苗字入りの赤い丸印を自動表示します。</span></div>
+</div>
+<div class="actions"><button id="saveSettings" type="button">発行者情報を保存</button><span class="status" id="settingsStatus" aria-live="polite"></span></div>
+<p class="hint">発行者情報・電子印・履歴は、このSafari内に保存されます。別の端末やブラウザとは共有されません。</p>
+</section>
+<section class="card">
+<h2>領収書を作成</h2>
+<div class="grid">
+<div><label for="date">発行日</label><input id="date" type="date"></div>
+<div><label for="recipient">宛名 *</label><input id="recipient" placeholder="例：山田 太郎 様"></div>
+<div><label for="amount">金額（税込） *</label><input id="amount" type="number" min="1" step="1" inputmode="numeric" placeholder="例：10000"></div>
+<div><label for="purpose">但し書き</label><input id="purpose" placeholder="例：商品代として"></div>
+<div><label for="method">支払方法</label><select id="method"><option>現金</option><option>銀行振込</option><option value="その他">その他</option></select></div>
+<div id="otherWrap"><label for="otherMethod">支払方法（その他）</label><input id="otherMethod" placeholder="支払方法を入力"></div>
+<div class="full"><label for="note">備考（任意）</label><textarea id="note" placeholder="必要な場合のみ入力"></textarea></div>
+</div>
+<div class="actions"><button id="previewBtn" type="button">領収書を作成</button><button class="secondary" id="clearBtn" type="button">入力をクリア</button></div>
+<p class="hint">作成後、「印刷／PDF保存」からiPhoneの共有・プリント画面を開けます。</p>
+</section>
+<section class="card"><h2>発行履歴</h2><div id="history"><p class="hint">まだ履歴はありません。</p></div></section>
+</div>
+<section id="receipt"><div class="receipt-paper">
+<h2 class="rt">領 収 書</h2><div class="rdate" id="rDate"></div>
+<div class="rname" id="rRecipient"></div>
+<div class="rsmall">下記の金額を領収いたしました。</div>
+<div class="ramount" id="rAmount"></div>
+<div class="rsmall">但し　<span id="rPurpose"></span></div>
+<div class="rsmall">支払方法：<span id="rMethod"></span></div>
+<div class="rsmall" id="rNote"></div>
+<div class="rfoot"><div><strong id="rIssuer"></strong><div id="rAddress"></div><div id="rPhone"></div></div><div class="rseal" id="rSeal"></div></div>
+</div></section>
+<div class="actions" id="printBar"><button id="printBtn" type="button">印刷／PDF保存</button><button class="secondary" id="editBtn" type="button">編集に戻る</button></div>
+<script>
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const SETTINGS='simpleReceiptIssuer_v2',HISTORY='simpleReceiptHistory_v2';
+let sealData='',history=[];
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function localDate(){const d=new Date();return new Date(d.getTime()-d.getTimezoneOffset()*60000).toISOString().slice(0,10);}
+function updateSeal(){const name=$('sealName').value.trim()||'印';$('sealPreview').innerHTML=sealData?'<img alt="電子印" src="'+sealData+'">':esc(name);}
+function saveSettings(){
+ const issuer=$('issuer').value.trim();if(!issuer){alert('発行者名を入力してください。');$('issuer').focus();return;}
+ const data={issuer,phone:$('phone').value.trim(),address:$('address').value.trim(),sealName:$('sealName').value.trim(),sealData};
+ try{localStorage.setItem(SETTINGS,JSON.stringify(data));$('settingsStatus').textContent='保存しました';}
+ catch(e){alert('保存できませんでした。電子印画像の容量が大きい可能性があります。画像を小さくして再度お試しください。');}
+}
+function getSettings(){try{return JSON.parse(localStorage.getItem(SETTINGS)||'null');}catch(e){return null;}}
+function readHistory(){try{history=JSON.parse(localStorage.getItem(HISTORY)||'[]');if(!Array.isArray(history))history=[];}catch(e){history=[];}}
+function saveHistory(){try{localStorage.setItem(HISTORY,JSON.stringify(history));}catch(e){alert('履歴を保存できませんでした。Safariの空き容量やプライベートブラウズ設定をご確認ください。');}}
+function showReceipt(d,save){
+ const s=getSettings();if(!s||!s.issuer){alert('先に発行者情報を保存してください。');$('issuer').focus();return;}
+ if(!d.recipient.trim()){alert('宛名を入力してください。');$('recipient').focus();return;}
+ if(!d.amount||Number(d.amount)<=0){alert('金額を正しく入力してください。');$('amount').focus();return;}
+ if(d.method==='その他'&&!d.otherMethod.trim()){alert('その他の支払方法を入力してください。');$('otherMethod').focus();return;}
+ $('rDate').textContent=(d.date||localDate()).replaceAll('-','/');
+ $('rRecipient').textContent=d.recipient;
+ $('rAmount').textContent='￥'+Number(d.amount).toLocaleString('ja-JP')+'－';
+ $('rPurpose').textContent=d.purpose||'お品代として';
+ $('rMethod').textContent=d.method==='その他'?d.otherMethod:d.method;
+ $('rNote').textContent=d.note?'備考：'+d.note:'';
+ $('rIssuer').textContent=s.issuer;$('rAddress').textContent=s.address;$('rPhone').textContent=s.phone;
+ $('rSeal').innerHTML=s.sealData?'<img alt="電子印" src="'+s.sealData+'">':esc(s.sealName||'印');
+ $('app').style.display='none';$('receipt').style.display='block';$('printBar').style.display='flex';
+ if(save){history.unshift({...d,id:Date.now()});saveHistory();renderHistory();}
+ window.scrollTo(0,0);
+}
+function formData(){return{date:$('date').value,recipient:$('recipient').value.trim(),amount:$('amount').value,purpose:$('purpose').value.trim(),method:$('method').value,otherMethod:$('otherMethod').value.trim(),note:$('note').value.trim()};}
+function renderHistory(){
+ const root=$('history');root.innerHTML='';
+ if(!history.length){root.innerHTML='<p class="hint">まだ履歴はありません。</p>';return;}
+ history.forEach(item=>{
+  const row=document.createElement('div');row.className='history';
+  const info=document.createElement('div');const b=document.createElement('strong');b.textContent=item.recipient;
+  const small=document.createElement('small');small.textContent=item.date+' ・ ￥'+Number(item.amount).toLocaleString('ja-JP')+' ・ '+(item.method==='その他'?item.otherMethod:item.method);
+  info.append(b,small);
+  const actions=document.createElement('div');actions.className='actions';
+  const re=document.createElement('button');re.type='button';re.className='secondary';re.textContent='再発行';re.addEventListener('click',()=>showReceipt(item,false));
+  const del=document.createElement('button');del.type='button';del.className='light';del.textContent='削除';del.addEventListener('click',()=>{if(confirm('この履歴を削除しますか？')){history=history.filter(x=>x.id!==item.id);saveHistory();renderHistory();}});
+  actions.append(re,del);row.append(info,actions);root.append(row);
+ });
+}
+$('saveSettings').addEventListener('click',saveSettings);
+$('sealName').addEventListener('input',updateSeal);
+$('sealFile').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(f.size>1500000){alert('電子印画像は1.5MB以下にしてください。');e.target.value='';return;}const reader=new FileReader();reader.onload=()=>{sealData=reader.result;updateSeal();};reader.readAsDataURL(f);});
+$('method').addEventListener('change',()=>{$('otherWrap').style.display=$('method').value==='その他'?'block':'none';});
+$('previewBtn').addEventListener('click',()=>showReceipt(formData(),true));
+$('clearBtn').addEventListener('click',()=>{['recipient','amount','purpose','otherMethod','note'].forEach(k=>$(k).value='');$('date').value=localDate();$('method').value='現金';$('otherWrap').style.display='none';});
+$('printBtn').addEventListener('click',()=>window.print());
+$('editBtn').addEventListener('click',()=>{$('receipt').style.display='none';$('printBar').style.display='none';$('app').style.display='block';window.scrollTo(0,0);});
+function init(){const s=getSettings();if(s){$('issuer').value=s.issuer||'';$('phone').value=s.phone||'';$('address').value=s.address||'';$('sealName').value=s.sealName||'';sealData=s.sealData||'';}updateSeal();$('date').value=localDate();readHistory();renderHistory();}
+init();
+})();
+</script></body></html>
