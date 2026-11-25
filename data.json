@@ -1,5 +1,18 @@
 [
   {
+    "date": "2026-11-25",
+    "category": "ブログ",
+    "title": "刹那的な日々を噛み締めて",
+    "detail": "五百城茉央の乃木坂46公式ブログ。",
+    "url": "https://www.nogizaka46.com/s/n46/diary/detail/105029?ima=3855&cd=MEMBER",
+    "source_url": "https://www.nogizaka46.com/s/n46/diary/MEMBER/list?cd=MEMBER&ct=55396",
+    "status": "official_blog_auto",
+    "auto_added": true,
+    "template": "blog",
+    "breaking": true,
+    "detected_at": "2026-11-25T12:39:43+00:00"
+  },
+  {
     "date": "2026-11-18",
     "category": "WEB・配信速報",
     "title": "SHOWROOM「のぎおび」五百城茉央",
@@ -1085,6 +1098,19 @@
     "link_status": "個別リンク確認中"
   },
   {
+    "date": "2024-11-23",
+    "category": "ライブ/イベント",
+    "title": "36thシングル「チートデイ」発売記念ミニライブ",
+    "detail": "16:00～。収録曲のパフォーマンスを配信。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/100452",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/100452",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "シングル発売記念ミニライブ"
+  },
+  {
     "date": "2024-11-20",
     "category": "テレビ",
     "title": "テレビ東京「テレ東音楽祭スペシャル」",
@@ -1518,6 +1544,19 @@
     "status": "公式スケジュール確認"
   },
   {
+    "date": "2023-10-18",
+    "category": "ライブ/イベント",
+    "title": "33rdシングル「おひとりさま天国」発売記念ミニライブ",
+    "detail": "20:00～21:00。収録曲のパフォーマンスを生配信。",
+    "url": "https://www.nogizaka46.com/s/n46/news/detail/66651",
+    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/66651",
+    "publisher": "乃木坂46公式",
+    "status": "公式告知確認済み",
+    "auto_added": true,
+    "template": "event",
+    "event_type": "シングル発売記念ミニライブ"
+  },
+  {
     "date": "2023-09-30",
     "category": "ライブ/イベント",
     "title": "Rakuten GirlsAward 2023 AUTUMN/WINTER — 乃木坂46ライブ出演",
@@ -1582,6 +1621,15 @@
   },
   {
     "date": "2023-09-03",
+    "category": "ラジオ",
+    "title": "NHKラジオ第1「らじらー！サンデー」特別企画",
+    "detail": "担当：特別企画　出演：五百城茉央ほか5期生　20:05～22:55",
+    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202309",
+    "status": "出演情報照合済み",
+    "link_status": "公式月別一覧"
+  },
+  {
+    "date": "2023-09-03",
     "category": "テレビ",
     "title": "MUSIC ON! TV「サキドリ！〜乃木坂46 真夏の全国ツアー2023 ライブ映像〜」",
     "detail": "ライブ映像放送。",
@@ -1589,15 +1637,6 @@
     "publisher": "MUSIC ON! TV",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
-  },
-  {
-    "date": "2023-09-03",
-    "category": "ラジオ",
-    "title": "NHKラジオ第1「らじらー！サンデー」特別企画",
-    "detail": "担当：特別企画　出演：五百城茉央ほか5期生　20:05～22:55",
-    "url": "https://www.nogizaka46.com/s/n46/media/list?dy=202309",
-    "status": "出演情報照合済み",
-    "link_status": "公式月別一覧"
   },
   {
     "date": "2023-08-31",
@@ -1866,31 +1905,5 @@
     "publisher": "MUSIC ON! TV",
     "status": "公開情報を確認",
     "link_status": "個別リンク確認中"
-  },
-  {
-    "date": "2024-11-23",
-    "category": "ライブ/イベント",
-    "title": "36thシングル「チートデイ」発売記念ミニライブ",
-    "detail": "16:00～。収録曲のパフォーマンスを配信。",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/100452",
-    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/100452",
-    "publisher": "乃木坂46公式",
-    "status": "公式告知確認済み",
-    "auto_added": true,
-    "template": "event",
-    "event_type": "シングル発売記念ミニライブ"
-  },
-  {
-    "date": "2023-10-18",
-    "category": "ライブ/イベント",
-    "title": "33rdシングル「おひとりさま天国」発売記念ミニライブ",
-    "detail": "20:00～21:00。収録曲のパフォーマンスを生配信。",
-    "url": "https://www.nogizaka46.com/s/n46/news/detail/66651",
-    "source_url": "https://www.nogizaka46.com/s/n46/news/detail/66651",
-    "publisher": "乃木坂46公式",
-    "status": "公式告知確認済み",
-    "auto_added": true,
-    "template": "event",
-    "event_type": "シングル発売記念ミニライブ"
   }
 ]
